@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jayane Borges | Marketing Digital para Negócios Locais</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --roxo-escuro: #26215C;
+    --roxo-medio: #534AB7;
+    --roxo-claro: #EEEDFE;
+    --dourado: #EF9F27;
+    --dourado-claro: #FAEEDA;
+    --branco: #FFFFFF;
+    --cinza-claro: #F8F7FF;
+    --texto-escuro: #1A1740;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--branco);
+    color: var(--texto-escuro);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--roxo-escuro);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 24px 60px;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(83,74,183,0.35) 0%, transparent 70%);
+    top: -150px; right: -150px;
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(239,159,39,0.12) 0%, transparent 70%);
+    bottom: -100px; left: -100px;
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(239,159,39,0.15);
+    border: 1px solid rgba(239,159,39,0.4);
+    color: var(--dourado);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    border-radius: 50px;
+    margin-bottom: 28px;
+    animation: fadeDown 0.6s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    font-weight: 900;
+    color: var(--branco);
+    line-height: 1.15;
+    max-width: 800px;
+    margin-bottom: 24px;
+    animation: fadeDown 0.7s ease 0.1s both;
+  }
+
+  .hero h1 span {
+    color: var(--dourado);
+    font-style: italic;
+  }
+
+  .hero p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: rgba(255,255,255,0.72);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 44px;
+    animation: fadeDown 0.7s ease 0.2s both;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeDown 0.7s ease 0.3s both;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--dourado);
+    color: var(--roxo-escuro);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 16px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 8px 32px rgba(239,159,39,0.35);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 40px rgba(239,159,39,0.5);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--branco);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 16px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    border: 1.5px solid rgba(255,255,255,0.25);
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .btn-secondary:hover {
+    border-color: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.06);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    margin-top: 64px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    animation: fadeDown 0.7s ease 0.4s both;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--dourado);
+    display: block;
+    line-height: 1;
+  }
+
+  .hero-stat-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 4px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* ── PROBLEMA ── */
+  .problema {
+    background: var(--cinza-claro);
+    padding: 96px 24px;
+    text-align: center;
+  }
+
+  .section-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--roxo-medio);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: var(--roxo-escuro);
+    max-width: 640px;
+    margin: 0 auto 16px;
+    line-height: 1.25;
+  }
+
+  .section-sub {
+    font-size: 16px;
+    color: #666;
+    max-width: 520px;
+    margin: 0 auto 56px;
+    line-height: 1.7;
+  }
+
+  .dores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    max-width: 920px;
+    margin: 0 auto;
+  }
+
+  .dor-card {
+    background: var(--branco);
+    border: 1.5px solid #E8E6F8;
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-align: left;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .dor-card:hover {
+    border-color: var(--roxo-medio);
+    box-shadow: 0 8px 32px rgba(83,74,183,0.1);
+  }
+
+  .dor-icon {
+    width: 44px; height: 44px;
+    background: var(--roxo-claro);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .dor-card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--roxo-escuro);
+    margin-bottom: 8px;
+  }
+
+  .dor-card p {
+    font-size: 13px;
+    color: #777;
+    line-height: 1.6;
+  }
+
+  /* ── QUEM SOU ── */
+  .quem-sou {
+    padding: 96px 24px;
+    background: var(--branco);
+  }
+
+  .quem-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .quem-visual {
+    position: relative;
+  }
+
+  .quem-foto-wrap {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 24px;
+    background: linear-gradient(135deg, var(--roxo-medio), var(--roxo-escuro));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quem-foto-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(239,159,39,0.2), transparent);
+  }
+
+  .quem-badge-flutuante {
+    position: absolute;
+    bottom: -16px;
+    right: -16px;
+    background: var(--dourado);
+    color: var(--roxo-escuro);
+    border-radius: 16px;
+    padding: 14px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.3;
+    box-shadow: 0 8px 32px rgba(239,159,39,0.4);
+    text-align: center;
+  }
+
+  .quem-texto h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    font-weight: 700;
+    color: var(--roxo-escuro);
+    line-height: 1.25;
+    margin-bottom: 20px;
+  }
+
+  .quem-texto h2 em {
+    color: var(--roxo-medio);
+    font-style: italic;
+  }
+
+  .quem-texto p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+
+  .formacoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 24px 0 32px;
+  }
+
+  .tag {
+    background: var(--roxo-claro);
+    color: var(--roxo-medio);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 50px;
+  }
+
+  /* ── SERVIÇOS ── */
+  .servicos {
+    background: var(--roxo-escuro);
+    padding: 96px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .servicos::before {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(83,74,183,0.3) 0%, transparent 70%);
+    top: -100px; left: -100px;
+    pointer-events: none;
+  }
+
+  .servicos .section-eyebrow { color: var(--dourado); }
+  .servicos .section-title { color: var(--branco); }
+  .servicos .section-sub { color: rgba(255,255,255,0.55); }
+
+  .planos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .plano {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 36px 28px;
+    position: relative;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .plano:hover {
+    transform: translateY(-4px);
+    border-color: rgba(239,159,39,0.4);
+  }
+
+  .plano.destaque {
+    background: rgba(239,159,39,0.08);
+    border-color: var(--dourado);
+    transform: scale(1.03);
+  }
+
+  .plano.destaque:hover {
+    transform: scale(1.03) translateY(-4px);
+  }
+
+  .plano-badge {
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--dourado);
+    color: var(--roxo-escuro);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 50px;
+    white-space: nowrap;
+  }
+
+  .plano-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 10px;
+  }
+
+  .plano-nome {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--branco);
+    margin-bottom: 20px;
+  }
+
+  .plano-preco {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 28px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .preco-cifrao {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--dourado);
+  }
+
+  .preco-valor {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--dourado);
+    line-height: 1;
+  }
+
+  .preco-periodo {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    align-self: flex-end;
+    margin-bottom: 4px;
+  }
+
+  .plano-itens {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+
+  .plano-itens li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.4;
+  }
+
+  .plano-itens li::before {
+    content: '✦';
+    color: var(--dourado);
+    font-size: 10px;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  .btn-plano {
+    display: block;
+    text-align: center;
+    padding: 14px;
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-plano-outline {
+    border: 1.5px solid rgba(255,255,255,0.25);
+    color: var(--branco);
+  }
+
+  .btn-plano-outline:hover {
+    border-color: var(--dourado);
+    color: var(--dourado);
+  }
+
+  .btn-plano-gold {
+    background: var(--dourado);
+    color: var(--roxo-escuro);
+    box-shadow: 0 6px 24px rgba(239,159,39,0.35);
+  }
+
+  .btn-plano-gold:hover {
+    box-shadow: 0 10px 32px rgba(239,159,39,0.5);
+    transform: translateY(-2px);
+  }
+
+  .avulsos {
+    max-width: 700px;
+    margin: 40px auto 0;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 24px 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .avulso-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    width: 100%;
+    text-align: center;
+    margin-bottom: -4px;
+  }
+
+  .avulso-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+  }
+
+  .avulso-preco {
+    color: var(--dourado);
+    font-weight: 600;
+  }
+
+  .sep {
+    color: rgba(255,255,255,0.15);
+  }
+
+  /* ── PROVA SOCIAL ── */
+  .provas {
+    padding: 96px 24px;
+    background: var(--cinza-claro);
+  }
+
+  .depoimentos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .depoimento {
+    background: var(--branco);
+    border: 1px solid #EAE8F8;
+    border-radius: 20px;
+    padding: 28px 24px;
+    position: relative;
+    transition: box-shadow 0.2s;
+  }
+
+  .depoimento:hover {
+    box-shadow: 0 12px 40px rgba(83,74,183,0.1);
+  }
+
+  .dep-aspas {
+    font-size: 48px;
+    font-family: 'Playfair Display', serif;
+    color: var(--roxo-claro);
+    line-height: 0.8;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .dep-texto {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  .dep-autor {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .dep-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--roxo-medio);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--branco);
+    font-size: 16px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .dep-nome {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--roxo-escuro);
+  }
+
+  .dep-negocio {
+    font-size: 12px;
+    color: #999;
+    margin-top: 2px;
+  }
+
+  .dep-estrelas {
+    color: var(--dourado);
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+
+  /* ── CASE CLIENT (Brothers) ── */
+  .case {
+    padding: 96px 24px;
+    background: var(--branco);
+  }
+
+  .case-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, var(--roxo-escuro) 60%, #3D3585);
+    border-radius: 24px;
+    padding: 56px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .case-inner::before {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(239,159,39,0.15) 0%, transparent 70%);
+    top: -60px; right: -60px;
+    pointer-events: none;
+  }
+
+  .case-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dourado);
+    margin-bottom: 12px;
+  }
+
+  .case h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: var(--branco);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .case p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+    margin-bottom: 36px;
+    max-width: 540px;
+  }
+
+  .case-nums {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .case-num-item {}
+  .case-num-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--dourado);
+    display: block;
+  }
+
+  .case-num-desc {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── OBJEÇÕES ── */
+  .objecoes {
+    padding: 96px 24px;
+    background: var(--cinza-claro);
+  }
+
+  .objecoes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .obj-card {
+    background: var(--branco);
+    border-radius: 16px;
+    padding: 28px 24px;
+    border-left: 4px solid var(--dourado);
+  }
+
+  .obj-pergunta {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--roxo-escuro);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .obj-resposta {
+    font-size: 13.5px;
+    color: #666;
+    line-height: 1.65;
+  }
+
+  /* ── CTA FINAL ── */
+  .cta-final {
+    background: var(--roxo-escuro);
+    padding: 96px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-final::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(83,74,183,0.4) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .cta-final h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 900;
+    color: var(--branco);
+    max-width: 640px;
+    margin: 0 auto 20px;
+    line-height: 1.2;
+    position: relative;
+  }
+
+  .cta-final h2 span { color: var(--dourado); font-style: italic; }
+
+  .cta-final p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.6);
+    max-width: 440px;
+    margin: 0 auto 44px;
+    line-height: 1.7;
+    position: relative;
+  }
+
+  .cta-final .btn-primary {
+    font-size: 16px;
+    padding: 18px 40px;
+    position: relative;
+  }
+
+  .cta-nota {
+    margin-top: 20px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.35);
+    position: relative;
+  }
+
+  /* ── RODAPÉ ── */
+  footer {
+    background: #0E0C2E;
+    padding: 32px 24px;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--branco);
+    margin-bottom: 6px;
+  }
+
+  .footer-logo span { color: var(--dourado); }
+
+  .footer-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 20px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--dourado); }
+
+  .footer-copy {
+    font-size: 11px;
+    color: rgba(255,255,255,0.2);
+  }
+
+  /* ── WHATSAPP FLUTUANTE ── */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 58px; height: 58px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 32px rgba(37,211,102,0.45);
+    text-decoration: none;
+    z-index: 999;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: pulse 2.5s infinite;
+  }
+
+  .whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 40px rgba(37,211,102,0.6);
+    animation: none;
+  }
+
+  .whatsapp-float svg { width: 28px; height: 28px; }
+
+  /* ── ANIMAÇÕES ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 8px 32px rgba(37,211,102,0.45); }
+    50%       { box-shadow: 0 8px 48px rgba(37,211,102,0.7); }
+  }
+
+  /* ── RESPONSIVO ── */
+  @media (max-width: 720px) {
+    .quem-inner { grid-template-columns: 1fr; }
+    .quem-foto-wrap { max-width: 280px; margin: 0 auto 48px; }
+    .quem-badge-flutuante { right: 0; bottom: -12px; font-size: 11px; }
+    .case-inner { padding: 40px 28px; }
+    .case-nums { gap: 24px; }
+    .plano.destaque { transform: scale(1); }
+    .plano.destaque:hover { transform: translateY(-4px); }
+  }
+</style>
+</head>
+<body>
+
+<!-- WHATSAPP FLUTUANTE -->
+<a class="whatsapp-float" href="https://wa.me/5597981156223?text=Ol%C3%A1%20Jayane!%20Vim%20pelo%20seu%20site%20e%20quero%20saber%20mais%20sobre%20seus%20servi%C3%A7os%20de%20marketing%20digital." target="_blank" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-badge">✦ Marketing Digital · Tecnologia · IA</span>
+  <h1>Seu negócio merece<br><span>aparecer, atrair e vender</span><br>no digital.</h1>
+  <p>Estratégia de marketing com tecnologia e inteligência artificial para colocar pequenos negócios e empresas locais no mapa digital.</p>
+  <div class="hero-cta">
+    <a class="btn-primary" href="https://wa.me/5597981156223?text=Ol%C3%A1%20Jayane!%20Vim%20pelo%20seu%20site%20e%20quero%20saber%20mais%20sobre%20seus%20servi%C3%A7os%20de%20marketing%20digital." target="_blank">
+      💬 Quero crescer no digital
+    </a>
+    <a class="btn-secondary" href="#servicos">Ver planos e preços</a>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <span class="hero-stat-num">+20</span>
+      <span class="hero-stat-label">formações em tech & marketing</span>
+    </div>
+    <div>
+      <span class="hero-stat-num">3×</span>
+      <span class="hero-stat-label">mais alcance com estratégia</span>
+    </div>
+    <div>
+      <span class="hero-stat-num">100%</span>
+      <span class="hero-stat-label">resultado mensurável</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMA -->
+<section class="problema">
+  <p class="section-eyebrow">Reconhece alguma dessas situações?</p>
+  <h2 class="section-title">O digital não está funcionando para o seu negócio?</h2>
+  <p class="section-sub">Você não está sozinho. Esses são os problemas mais comuns dos pequenos negócios que atendo.</p>
+  <div class="dores-grid">
+    <div class="dor-card">
+      <div class="dor-icon">📵</div>
+      <h3>Perfil parado e sem engajamento</h3>
+      <p>Você tem um Instagram mas ele não atrai clientes nem gera vendas.</p>
+    </div>
+    <div class="dor-card">
+      <div class="dor-icon">🔍</div>
+      <h3>Invisível no digital</h3>
+      <p>Quando alguém pesquisa pelo seu serviço na sua cidade, você não aparece.</p>
+    </div>
+    <div class="dor-card">
+      <div class="dor-icon">📉</div>
+      <h3>Posta mas não vende</h3>
+      <p>Conteúdo sem estratégia não converte. Seguidores não viram clientes.</p>
+    </div>
+    <div class="dor-card">
+      <div class="dor-icon">⏰</div>
+      <h3>Sem tempo para criar conteúdo</h3>
+      <p>Você cuida do negócio e não tem tempo para pensar no marketing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUEM SOU -->
+<section class="quem-sou">
+  <div class="quem-inner">
+    <div class="quem-visual">
+      <div class="quem-foto-wrap">👩🏽‍💼</div>
+      <div class="quem-badge-flutuante">Marketing<br>+ Tech + IA<br>💜</div>
+    </div>
+    <div class="quem-texto">
+      <h2>Olá, eu sou a Jayane.<br>Especialista em <em>marketing digital</em> para negócios locais.</h2>
+      <p>Combino estratégia de marketing com tecnologia e inteligência artificial para criar uma presença digital que realmente gera resultado para pequenos negócios e empresas locais.</p>
+      <p>Não é só postar — é ter a mensagem certa, para a pessoa certa, na hora certa.</p>
+      <div class="formacoes">
+        <span class="tag">📲 Marketing Digital</span>
+        <span class="tag">💻 Informática</span>
+        <span class="tag">🤖 IA Aplicada</span>
+        <span class="tag">📊 Gestão de TI</span>
+        <span class="tag">🎓 Pedagogia</span>
+        <span class="tag">🛒 Técnica em Vendas</span>
+      </div>
+      <a class="btn-primary" href="https://wa.me/5597981156223?text=Ol%C3%A1%20Jayane!%20Quero%20conhecer%20melhor%20o%20seu%20trabalho." target="_blank" style="display:inline-flex;">
+        📩 Me envia uma mensagem
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS / PLANOS -->
+<section class="servicos" id="servicos">
+  <div style="text-align:center; margin-bottom:56px; position:relative;">
+    <p class="section-eyebrow">Escolha o melhor plano</p>
+    <h2 class="section-title">Planos de gestão de marketing</h2>
+    <p class="section-sub">Sem contrato longo. Sem taxa de setup. Você investe e acompanha o resultado todo mês.</p>
+  </div>
+  <div class="planos-grid">
+
+    <!-- Essencial -->
+    <div class="plano">
+      <p class="plano-label">Ideal para começar</p>
+      <p class="plano-nome">Plano Essencial</p>
+      <div class="plano-preco">
+        <span class="preco-cifrao">R$</span>
+        <span class="preco-valor">497</span>
+        <span class="preco-periodo">/mês</span>
+      </div>
+      <ul class="plano-itens">
+        <li>8 posts por mês (feed + reels)</li>
+        <li>Reescrita de bio com CTA estratégico</li>
+        <li>Capas dos destaques padronizadas</li>
+        <li>Calendário editorial mensal</li>
+        <li>Legendas e hashtags estratégicas</li>
+        <li>1 relatório mensal de métricas</li>
+      </ul>
+      <a class="btn-plano btn-plano-outline" href="https://wa.me/5597981156223?text=Ol%C3%A1%20Jayane!%20Tenho%20interesse%20no%20Plano%20Essencial%20de%20R%24497%2Fm%C3%AAs." target="_blank">Quero esse plano</a>
+    </div>
+
+    <!-- Profissional -->
+    <div class="plano destaque">
+      <span class="plano-badge">✦ Mais popular</span>
+      <p class="plano-label">Crescimento acelerado</p>
+      <p class="plano-nome">Plano Profissional</p>
+      <div class="plano-preco">
+        <span class="preco-cifrao">R$</span>
+        <span class="preco-valor">897</span>
+        <span class="preco-periodo">/mês</span>
+      </div>
+      <ul class="plano-itens">
+        <li>16 posts/mês (feed, reels, carrosseis)</li>
+        <li>4 Reels com roteiro completo</li>
+        <li>Bio + identidade visual do feed</li>
+        <li>Stories diários estratégicos</li>
+        <li>Capas de destaques premium</li>
+        <li>Relatório detalhado mensal</li>
+      </ul>
+      <a class="btn-plano btn-plano-gold" href="https://wa.me/5597981156223?text=Ol%C3%A1%20Jayane!%20Tenho%20interesse%20no%20Plano%20Profissional%20de%20R%24897%2Fm%C3%AAs." target="_blank">Quero esse plano</a>
+    </div>
+
+    <!-- Completo -->
+    <div class="plano">
+      <p class="plano-label">Gestão total</p>
+      <p class="plano-nome">Plano Completo</p>
+      <div class="plano-preco">
+        <span class="preco-cifrao">R$</span>
+        <span class="preco-valor">1.397</span>
+        <span class="preco-periodo">/mês</span>
+      </div>
+      <ul class="plano-itens">
+        <li>Posts diários (feed + stories + reels)</li>
+        <li>8 Reels por mês com edição</li>
+        <li>Identidade visual completa</li>
+        <li>Gestão de comentários e DMs</li>
+        <li>Orientação para fotos de produto</li>
+        <li>Relatório + reunião estratégica</li>
+      </ul>
+      <a class="btn-plano btn-plano-outline" href="https://wa.me/5597981156223?text=Ol%C3%A1%20Jayane!%20Tenho%20interesse%20no%20Plano%20Completo%20de%20R%241.397%2Fm%C3%AAs." target="_blank">Quero esse plano</a>
+    </div>
+
+  </div>
+
+  <div class="avulsos">
+    <span class="avulso-label">Serviços avulsos</span>
+    <span class="avulso-item">Apenas bio <span class="avulso-preco">R$ 150</span></span>
+    <span class="sep">·</span>
+    <span class="avulso-item">Apenas destaques <span class="avulso-preco">R$ 200</span></span>
+    <span class="sep">·</span>
+    <span class="avulso-item">Consultoria <span class="avulso-preco">R$ 250/hora</span></span>
+    <span class="sep">·</span>
+    <span class="avulso-item">Papelaria personalizada <span class="avulso-preco">sob consulta</span></span>
+  </div>
+</section>
+
+<!-- PROVA SOCIAL -->
+<section class="provas">
+  <div style="text-align:center; margin-bottom:56px;">
+    <p class="section-eyebrow">O que dizem os clientes</p>
+    <h2 class="section-title">Resultados reais de quem já investiu</h2>
+    <p class="section-sub">Não é promessa — é o que acontece quando estratégia encontra execução.</p>
+  </div>
+  <div class="depoimentos-grid">
+    <div class="depoimento">
+      <div class="dep-estrelas">★★★★★</div>
+      <span class="dep-aspas">"</span>
+      <p class="dep-texto">Antes do trabalho da Jayane, nosso perfil tinha 0 estratégia. Em 60 dias os clientes começaram a chegar dizendo que nos viram no Instagram. Resultado real e mensurável.</p>
+      <div class="dep-autor">
+        <div class="dep-avatar">SB</div>
+        <div>
+          <p class="dep-nome">Sorveteria Brothers</p>
+          <p class="dep-negocio">Sorveteria & Açaíteria — Tefé, AM</p>
+        </div>
+      </div>
+    </div>
+    <div class="depoimento">
+      <div class="dep-estrelas">★★★★★</div>
+      <span class="dep-aspas">"</span>
+      <p class="dep-texto">A Jayane entendeu exatamente o que o meu negócio precisava. A bio nova, os destaques e os Reels transformaram o perfil. As mensagens no WhatsApp aumentaram muito.</p>
+      <div class="dep-autor">
+        <div class="dep-avatar" style="background:#E84393;">M</div>
+        <div>
+          <p class="dep-nome">Maria Clara</p>
+          <p class="dep-negocio">Salão de Beleza</p>
+        </div>
+      </div>
+    </div>
+    <div class="depoimento">
+      <div class="dep-estrelas">★★★★★</div>
+      <span class="dep-aspas">"</span>
+      <p class="dep-texto">Profissional incrível! Ela usa IA de um jeito que economiza tempo e aumenta qualidade. Em 30 dias já tinha resultado. Super recomendo para qualquer negócio local.</p>
+      <div class="dep-autor">
+        <div class="dep-avatar" style="background:#1D9E75;">R</div>
+        <div>
+          <p class="dep-nome">Roberto Alves</p>
+          <p class="dep-negocio">Clínica de Estética</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE BROTHERS -->
+<section class="case">
+  <div class="case-inner">
+    <p class="case-eyebrow">📊 Case real — Sorveteria Brothers</p>
+    <h2>27.764 visualizações com zero estratégia.<br>Imagina com gestão profissional.</h2>
+    <p>A Sorveteria Brothers já tinha alcance orgânico. Com gestão profissional, esse número pode triplicar em 60 dias — mais clientes na loja, mais pedidos, mais faturamento.</p>
+    <div class="case-nums">
+      <div class="case-num-item">
+        <span class="case-num-val">27.7k</span>
+        <span class="case-num-desc">Visualizações orgânicas</span>
+      </div>
+      <div class="case-num-item">
+        <span class="case-num-val">57,4%</span>
+        <span class="case-num-desc">Views de não seguidores</span>
+      </div>
+      <div class="case-num-item">
+        <span class="case-num-val">6.9k</span>
+        <span class="case-num-desc">Seguidores conquistados</span>
+      </div>
+      <div class="case-num-item">
+        <span class="case-num-val">3×</span>
+        <span class="case-num-desc">Potencial de crescimento</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUEBRA DE OBJEÇÕES -->
+<section class="objecoes">
+  <div style="text-align:center; margin-bottom:56px;">
+    <p class="section-eyebrow">Tira essa dúvida agora</p>
+    <h2 class="section-title">Ainda tem alguma dúvida?</h2>
+  </div>
+  <div class="objecoes-grid">
+    <div class="obj-card">
+      <p class="obj-pergunta">💰 É muito caro para o meu negócio?</p>
+      <p class="obj-resposta">Já calculou quanto custa NÃO ter marketing? Cada mês sem presença digital é um mês perdendo clientes para o concorrente. O investimento se paga com poucos novos clientes.</p>
+    </div>
+    <div class="obj-card">
+      <p class="obj-pergunta">⏳ Demora para ver resultado?</p>
+      <p class="obj-resposta">Resultados orgânicos começam a aparecer em 30 a 60 dias. Relatório mensal com dados reais para você acompanhar cada etapa do crescimento.</p>
+    </div>
+    <div class="obj-card">
+      <p class="obj-pergunta">📄 Preciso assinar contrato longo?</p>
+      <p class="obj-resposta">Não. Contrato mensal renovável, sem fidelidade e sem multa de saída. Você paga pelo resultado. Se não estiver satisfeito, encerra a qualquer mês.</p>
+    </div>
+    <div class="obj-card">
+      <p class="obj-pergunta">🤔 Meu negócio é pequeno, vale a pena?</p>
+      <p class="obj-resposta">Pequenos negócios locais são exatamente o público que mais se beneficia. A concorrência digital local ainda é baixa — quem aparecer primeiro, domina o mercado.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <h2>Pronto para <span>colocar o seu negócio no digital</span> de verdade?</h2>
+  <p>Me chama no WhatsApp agora. Sem compromisso, sem enrolação. Vamos conversar sobre o seu negócio.</p>
+  <a class="btn-primary" href="https://wa.me/5597981156223?text=Ol%C3%A1%20Jayane!%20Vim%20pela%20sua%20p%C3%A1gina%20e%20quero%20saber%20mais%20sobre%20seus%20servi%C3%A7os%20de%20marketing%20digital%20para%20o%20meu%20neg%C3%B3cio." target="_blank">
+    💬 Falar com a Jayane agora
+  </a>
+  <p class="cta-nota">Respondo em até 1 hora no horário comercial · Atendo em todo o Brasil</p>
+</section>
+
+<!-- RODAPÉ -->
+<footer>
+  <p class="footer-logo">Jayane <span>Borges</span></p>
+  <p class="footer-sub">Marketing Digital · Tecnologia · IA</p>
+  <div class="footer-links">
+    <a href="https://instagram.com/jayane.marketing" target="_blank">@jayane.marketing</a>
+    <a href="https://wa.me/5597981156223" target="_blank">WhatsApp</a>
+    <a href="#servicos">Planos</a>
+  </div>
+  <p class="footer-copy">© 2025 Jayane Borges · Todos os direitos reservados · Tefé, AM</p>
+</footer>
+
+</body>
+</html>
