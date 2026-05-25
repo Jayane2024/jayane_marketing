@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Jayane Borges — Especialista em Marketing Digital para Negócios Locais. Estratégia, Tecnologia e IA para pequenos negócios crescerem no digital.">
+<meta property="og:title" content="Jayane Borges | Marketing Digital para Negócios Locais">
+<meta property="og:description" content="Estratégia de marketing com tecnologia e IA para colocar seu negócio no mapa digital.">
+<meta property="og:type" content="website">
+<title>Jayane Borges | Marketing Digital para Negócios Locais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --roxo-escuro: #1E1854;
+    --roxo-medio: #4F46C8;
+    --roxo-claro: #EEF0FF;
+    --dourado: #F0A030;
+    --dourado-claro: #FEF3DC;
+    --branco: #FFFFFF;
+    --cinza-f: #F7F8FC;
+    --cinza-borda: #E8EAF0;
+    --texto: #1A1740;
+    --texto-sub: #6B6B8A;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--branco);
+    color: var(--texto);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 40px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(30,24,84,0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--branco);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .nav-logo span { color: var(--dourado); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    transition: color 0.2s;
+    letter-spacing: 0.01em;
+  }
+  .nav-links a:hover { color: var(--branco); }
+
+  .nav-cta {
+    background: var(--dourado) !important;
+    color: var(--roxo-escuro) !important;
+    padding: 9px 22px;
+    border-radius: 50px;
+    font-weight: 700 !important;
+    font-size: 13px !important;
+    transition: box-shadow 0.2s, transform 0.2s !important;
+  }
+  .nav-cta:hover {
+    box-shadow: 0 6px 24px rgba(240,160,48,0.45) !important;
+    transform: translateY(-1px);
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--branco);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--roxo-escuro);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 0;
+    padding: 0 0 0 6vw;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .hero-bg-glow {
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+  }
+  .hero-bg-glow-1 {
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(79,70,200,0.28) 0%, transparent 65%);
+    top: -200px; right: -100px;
+  }
+  .hero-bg-glow-2 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(240,160,48,0.12) 0%, transparent 65%);
+    bottom: -80px; left: 5%;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 120px 0 80px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(240,160,48,0.12);
+    border: 1px solid rgba(240,160,48,0.35);
+    color: var(--dourado);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 7px 18px;
+    border-radius: 50px;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: slideUp 0.6s ease 0.1s forwards;
+  }
+  .hero-badge::before { content: '✦'; font-size: 9px; }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+    font-weight: 900;
+    color: var(--branco);
+    line-height: 1.13;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+    opacity: 0;
+    animation: slideUp 0.7s ease 0.2s forwards;
+  }
+  .hero h1 em {
+    color: var(--dourado);
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-size: clamp(15px, 1.6vw, 17px);
+    color: rgba(255,255,255,0.62);
+    line-height: 1.75;
+    max-width: 460px;
+    margin-bottom: 44px;
+    font-weight: 400;
+    opacity: 0;
+    animation: slideUp 0.7s ease 0.3s forwards;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: slideUp 0.7s ease 0.4s forwards;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--dourado);
+    color: var(--roxo-escuro);
+    font-family: 'Inter', sans-serif;
+    font-size: 14.5px;
+    font-weight: 700;
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 8px 28px rgba(240,160,48,0.38);
+    white-space: nowrap;
+  }
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 40px rgba(240,160,48,0.55);
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.75);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 14px 22px;
+    border-radius: 50px;
+    text-decoration: none;
+    border: 1.5px solid rgba(255,255,255,0.18);
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    white-space: nowrap;
+  }
+  .btn-ghost:hover {
+    border-color: rgba(255,255,255,0.45);
+    color: var(--branco);
+    background: rgba(255,255,255,0.05);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 36px;
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    opacity: 0;
+    animation: slideUp 0.7s ease 0.55s forwards;
+  }
+  .hero-stat-num {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--dourado);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .hero-stat-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.42);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    line-height: 1.4;
+    max-width: 100px;
+  }
+
+  /* hero photo side */
+  .hero-photo-side {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeIn 1s ease 0.5s forwards;
+  }
+
+  .hero-photo-side::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, var(--roxo-escuro) 0%, transparent 30%);
+    z-index: 1;
+  }
+  .hero-photo-side::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 180px;
+    background: linear-gradient(to top, var(--roxo-escuro) 0%, transparent 100%);
+    z-index: 1;
+  }
+
+  .hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  .hero-float-card {
+    position: absolute;
+    z-index: 3;
+    bottom: 60px;
+    left: 32px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    animation: slideUp 0.8s ease 0.8s both;
+  }
+
+  .hero-float-icon {
+    width: 42px; height: 42px;
+    background: var(--dourado);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .hero-float-text strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--branco);
+    margin-bottom: 2px;
+  }
+  .hero-float-text span {
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* ── LOGOS / CONFIANÇA ── */
+  .confianca {
+    background: var(--cinza-f);
+    padding: 32px 40px;
+    text-align: center;
+    border-bottom: 1px solid var(--cinza-borda);
+  }
+  .confianca-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--texto-sub);
+    margin-bottom: 20px;
+    opacity: 0.7;
+  }
+  .confianca-itens {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .confianca-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--texto-sub);
+    opacity: 0.65;
+  }
+  .confianca-item span { font-size: 18px; }
+
+  /* ── SEÇÃO GENÉRICA ── */
+  .section {
+    padding: 100px 40px;
+  }
+  .section-center { text-align: center; }
+
+  .eyebrow {
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--roxo-medio);
+    margin-bottom: 14px;
+    display: block;
+  }
+  .eyebrow-gold { color: var(--dourado); }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    color: var(--roxo-escuro);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  .section-title-white { color: var(--branco); }
+
+  .section-desc {
+    font-size: 16px;
+    color: var(--texto-sub);
+    line-height: 1.75;
+    max-width: 520px;
+    margin-top: 16px;
+  }
+  .section-desc-white { color: rgba(255,255,255,0.55); }
+
+  .section-header {
+    max-width: 600px;
+    margin: 0 auto 60px;
+  }
+
+  /* ── PROBLEMA ── */
+  .problema { background: var(--cinza-f); }
+
+  .dores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+
+  .dor-card {
+    background: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 20px;
+    padding: 32px 28px;
+    text-align: left;
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  }
+  .dor-card:hover {
+    border-color: var(--roxo-medio);
+    box-shadow: 0 12px 40px rgba(79,70,200,0.1);
+    transform: translateY(-4px);
+  }
+
+  .dor-icon {
+    width: 48px; height: 48px;
+    background: var(--roxo-claro);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  .dor-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--roxo-escuro);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .dor-card p {
+    font-size: 13.5px;
+    color: var(--texto-sub);
+    line-height: 1.65;
+  }
+
+  /* ── QUEM SOU ── */
+  .quem-sou { background: var(--branco); }
+
+  .quem-inner {
+    max-width: 1060px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .quem-visual { position: relative; }
+
+  .quem-img-wrap {
+    border-radius: 28px;
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    background: linear-gradient(160deg, var(--roxo-medio), var(--roxo-escuro));
+    position: relative;
+    box-shadow: 0 24px 80px rgba(30,24,84,0.22);
+  }
+  .quem-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  .quem-badge {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    background: var(--dourado);
+    color: var(--roxo-escuro);
+    border-radius: 20px;
+    padding: 18px 24px;
+    text-align: center;
+    box-shadow: 0 12px 40px rgba(240,160,48,0.45);
+    line-height: 1.3;
+    font-weight: 700;
+    font-size: 13px;
+    min-width: 120px;
+  }
+  .quem-badge span {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .quem-exp-strip {
+    position: absolute;
+    top: 24px;
+    left: -20px;
+    background: var(--roxo-escuro);
+    color: var(--branco);
+    border-radius: 14px;
+    padding: 12px 18px;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 8px 32px rgba(30,24,84,0.3);
+    white-space: nowrap;
+  }
+  .quem-exp-strip::before { content: '🏆'; font-size: 16px; }
+
+  .quem-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .quem-texto h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: var(--roxo-escuro);
+    line-height: 1.2;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+  }
+  .quem-texto h2 em {
+    color: var(--roxo-medio);
+    font-style: italic;
+  }
+
+  .quem-texto p {
+    font-size: 15.5px;
+    color: var(--texto-sub);
+    line-height: 1.78;
+    margin-bottom: 18px;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 20px 0 36px;
+  }
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--roxo-claro);
+    color: var(--roxo-medio);
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 50px;
+    border: 1px solid rgba(79,70,200,0.12);
+  }
+
+  /* ── PROCESSO ── */
+  .processo { background: var(--cinza-f); }
+
+  .processo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2px;
+    max-width: 980px;
+    margin: 0 auto;
+    background: var(--cinza-borda);
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid var(--cinza-borda);
+  }
+
+  .processo-step {
+    background: var(--branco);
+    padding: 40px 32px;
+    position: relative;
+    transition: background 0.2s;
+  }
+  .processo-step:hover { background: var(--roxo-claro); }
+
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--cinza-borda);
+    line-height: 1;
+    margin-bottom: 16px;
+    transition: color 0.2s;
+  }
+  .processo-step:hover .step-num { color: rgba(79,70,200,0.18); }
+
+  .step-icon {
+    font-size: 24px;
+    margin-bottom: 14px;
+    display: block;
+  }
+  .step-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--roxo-escuro);
+    margin-bottom: 10px;
+  }
+  .step-desc {
+    font-size: 13px;
+    color: var(--texto-sub);
+    line-height: 1.65;
+  }
+
+  /* ── SERVIÇOS ── */
+  .servicos {
+    background: var(--roxo-escuro);
+    position: relative;
+    overflow: hidden;
+  }
+  .servicos::before {
+    content: '';
+    position: absolute;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(79,70,200,0.22) 0%, transparent 65%);
+    top: -200px; left: -150px;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .servicos::after {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(240,160,48,0.08) 0%, transparent 65%);
+    bottom: -100px; right: -100px;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .planos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .plano {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 24px;
+    padding: 40px 32px;
+    position: relative;
+    transition: transform 0.25s, border-color 0.25s, background 0.25s;
+  }
+  .plano:hover {
+    transform: translateY(-6px);
+    border-color: rgba(240,160,48,0.35);
+    background: rgba(255,255,255,0.065);
+  }
+  .plano.destaque {
+    background: rgba(240,160,48,0.07);
+    border-color: rgba(240,160,48,0.55);
+    transform: scale(1.035);
+  }
+  .plano.destaque:hover {
+    transform: scale(1.035) translateY(-6px);
+  }
+
+  .plano-badge-top {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--dourado);
+    color: var(--roxo-escuro);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 18px;
+    border-radius: 50px;
+    white-space: nowrap;
+  }
+
+  .plano-tier {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.38);
+    margin-bottom: 8px;
+  }
+  .plano-nome {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--branco);
+    margin-bottom: 24px;
+    line-height: 1.2;
+  }
+
+  .plano-preco {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 10px;
+  }
+  .preco-cifrao {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--dourado);
+    align-self: flex-start;
+    padding-top: 6px;
+  }
+  .preco-valor {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--dourado);
+    line-height: 1;
+  }
+  .preco-periodo {
+    font-size: 13px;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 6px;
+  }
+
+  .plano-divider {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.09);
+    margin: 24px 0;
+  }
+
+  .plano-itens {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    margin-bottom: 36px;
+  }
+  .plano-itens li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.45;
+  }
+  .plano-itens li::before {
+    content: '✦';
+    color: var(--dourado);
+    font-size: 9px;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .btn-plano {
+    display: block;
+    text-align: center;
+    padding: 14px 20px;
+    border-radius: 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .btn-outline-w {
+    border: 1.5px solid rgba(255,255,255,0.2);
+    color: var(--branco);
+  }
+  .btn-outline-w:hover {
+    border-color: var(--dourado);
+    color: var(--dourado);
+    background: rgba(240,160,48,0.05);
+  }
+  .btn-gold {
+    background: var(--dourado);
+    color: var(--roxo-escuro);
+    box-shadow: 0 8px 28px rgba(240,160,48,0.35);
+  }
+  .btn-gold:hover {
+    box-shadow: 0 12px 36px rgba(240,160,48,0.55);
+    transform: translateY(-2px);
+  }
+
+  .avulsos {
+    max-width: 760px;
+    margin: 40px auto 0;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 18px;
+    padding: 28px 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  .avulso-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    width: 100%;
+    text-align: center;
+    margin-bottom: -4px;
+  }
+  .avulso-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+  }
+  .avulso-preco { color: var(--dourado); font-weight: 700; }
+  .avulso-sep { color: rgba(255,255,255,0.12); }
+
+  /* ── PROVA SOCIAL ── */
+  .provas { background: var(--cinza-f); }
+
+  .deps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 22px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .dep {
+    background: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 22px;
+    padding: 32px 28px;
+    transition: box-shadow 0.25s, transform 0.25s;
+  }
+  .dep:hover {
+    box-shadow: 0 16px 48px rgba(79,70,200,0.1);
+    transform: translateY(-4px);
+  }
+
+  .dep-stars {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 18px;
+  }
+  .dep-stars span {
+    color: var(--dourado);
+    font-size: 14px;
+  }
+
+  .dep-quote {
+    font-size: 13.5px;
+    color: #555;
+    line-height: 1.75;
+    margin-bottom: 24px;
+    font-style: italic;
+    position: relative;
+    padding-left: 18px;
+  }
+  .dep-quote::before {
+    content: '"';
+    position: absolute;
+    left: 0;
+    top: -8px;
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    color: var(--roxo-claro);
+    line-height: 1;
+  }
+
+  .dep-autor {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 18px;
+    border-top: 1px solid var(--cinza-borda);
+  }
+  .dep-avatar {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: var(--roxo-medio);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--branco);
+    font-size: 15px;
+    font-weight: 700;
+    flex-shrink: 0;
+    letter-spacing: 0;
+  }
+  .dep-nome {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--roxo-escuro);
+  }
+  .dep-negocio {
+    font-size: 12px;
+    color: var(--texto-sub);
+    margin-top: 2px;
+  }
+
+  /* ── CASE ── */
+  .case { background: var(--branco); }
+
+  .case-inner {
+    max-width: 940px;
+    margin: 0 auto;
+    background: linear-gradient(140deg, var(--roxo-escuro) 0%, #2E266E 100%);
+    border-radius: 28px;
+    padding: 60px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .case-inner::before {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(240,160,48,0.14) 0%, transparent 70%);
+    top: -100px; right: -80px;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .case-inner::after {
+    content: '';
+    position: absolute;
+    width: 250px; height: 250px;
+    background: radial-gradient(circle, rgba(79,70,200,0.35) 0%, transparent 70%);
+    bottom: -60px; left: 40px;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .case-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dourado);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .case-inner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: var(--branco);
+    margin-bottom: 16px;
+    line-height: 1.25;
+    position: relative;
+  }
+  .case-inner > p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.72;
+    margin-bottom: 44px;
+    max-width: 540px;
+    position: relative;
+  }
+
+  .case-nums {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 32px;
+    position: relative;
+  }
+  .case-num-val {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--dourado);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .case-num-desc {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    line-height: 1.4;
+  }
+
+  /* ── OBJEÇÕES ── */
+  .objecoes { background: var(--cinza-f); }
+
+  .objecoes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 20px;
+    max-width: 940px;
+    margin: 0 auto;
+  }
+
+  .obj-card {
+    background: var(--branco);
+    border-radius: 18px;
+    padding: 30px 26px;
+    border-left: 4px solid var(--dourado);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .obj-card:hover {
+    box-shadow: 0 10px 40px rgba(240,160,48,0.12);
+    transform: translateY(-3px);
+  }
+  .obj-pergunta {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--roxo-escuro);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .obj-resposta {
+    font-size: 13.5px;
+    color: var(--texto-sub);
+    line-height: 1.68;
+  }
+
+  /* ── CTA FINAL ── */
+  .cta-final {
+    background: var(--roxo-escuro);
+    padding: 112px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-final::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 70% at 50% 50%, rgba(79,70,200,0.35) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .cta-final h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4.5vw, 3.4rem);
+    font-weight: 900;
+    color: var(--branco);
+    max-width: 640px;
+    margin: 0 auto 20px;
+    line-height: 1.18;
+    position: relative;
+    letter-spacing: -0.02em;
+  }
+  .cta-final h2 em { color: var(--dourado); font-style: italic; }
+
+  .cta-final p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.55);
+    max-width: 440px;
+    margin: 0 auto 48px;
+    line-height: 1.72;
+    position: relative;
+  }
+
+  .cta-nota {
+    margin-top: 22px;
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.3);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .cta-nota-dot {
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    display: inline-block;
+  }
+
+  /* ── RODAPÉ ── */
+  footer {
+    background: #0D0B2A;
+    padding: 48px 40px 32px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--branco);
+    margin-bottom: 4px;
+  }
+  .footer-logo span { color: var(--dourado); }
+  .footer-sub {
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.28);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .footer-links {
+    display: flex;
+    gap: 28px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .footer-links a {
+    font-size: 13px;
+    color: rgba(255,255,255,0.38);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--dourado); }
+  .footer-copy {
+    font-size: 11px;
+    color: rgba(255,255,255,0.18);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 20px;
+  }
+
+  /* ── WHATSAPP ── */
+  .wa-float {
+    position: fixed;
+    bottom: 28px; right: 28px;
+    width: 60px; height: 60px;
+    background: #22C55E;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 32px rgba(34,197,94,0.5);
+    text-decoration: none;
+    z-index: 999;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: waPulse 2.5s ease-in-out infinite;
+  }
+  .wa-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 14px 44px rgba(34,197,94,0.7);
+    animation: none;
+  }
+  .wa-float svg { width: 30px; height: 30px; }
+
+  /* ── ANIMAÇÕES ── */
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes waPulse {
+    0%, 100% { box-shadow: 0 8px 32px rgba(34,197,94,0.5); }
+    50%       { box-shadow: 0 8px 52px rgba(34,197,94,0.75); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 68px; left: 0; right: 0;
+      background: rgba(30,24,84,0.98);
+      backdrop-filter: blur(20px);
+      padding: 24px;
+      gap: 4px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-links.open a {
+      padding: 12px 0;
+      font-size: 15px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .hamburger { display: flex; }
+
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 0;
+      min-height: auto;
+    }
+    .hero-content {
+      padding: 100px 24px 60px;
+      text-align: center;
+    }
+    .hero-sub { max-width: 100%; margin-left: auto; margin-right: auto; }
+    .hero-actions { justify-content: center; }
+    .hero-stats { justify-content: center; }
+    .hero-photo-side {
+      height: 55vw;
+      min-height: 300px;
+    }
+    .hero-photo-side::before {
+      background: linear-gradient(to bottom, var(--roxo-escuro) 0%, transparent 30%);
+    }
+    .hero-float-card { display: none; }
+
+    .section { padding: 72px 24px; }
+
+    .quem-inner {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .quem-img-wrap { max-width: 340px; margin: 0 auto; }
+    .quem-badge { right: 0; bottom: -16px; font-size: 12px; }
+    .quem-exp-strip { left: -8px; font-size: 11px; }
+
+    .case-inner { padding: 40px 28px; }
+    .case-nums { gap: 24px; }
+
+    .plano.destaque { transform: scale(1); }
+    .plano.destaque:hover { transform: translateY(-6px); }
+
+    .cta-final { padding: 80px 24px; }
+    footer { padding: 40px 24px 28px; }
+  }
+
+  @media (max-width: 500px) {
+    .confianca-itens { gap: 20px; }
+    .hero-stats { gap: 24px; }
+    .processo-grid { grid-template-columns: 1fr; border-radius: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nav-logo" href="#">Jayane <span>Borges</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#resultados">Resultados</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a class="nav-cta" href="https://wa.me/5597981156223?text=Ol%C3%A1%20Jayane!%20Vim%20pelo%20seu%20site%20e%20quero%20saber%20mais%20sobre%20seus%20servi%C3%A7os%20de%20marketing%20digital." target="_blank">Falar agora</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- WHATSAPP FLUTUANTE -->
+<a class="wa-float" href="https://wa.me/5597981156223?text=Ol%C3%A1%20Jayane!%20Vim%20pelo%20seu%20site%20e%20quero%20saber%20mais%20sobre%20seus%20servi%C3%A7os%20de%20marketing%20digital." target="_blank" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-glow hero-bg-glow-1"></div>
+  <div class="hero-bg-glow hero-bg-glow-2"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">Marketing Digital · Tecnologia · IA</div>
+    <h1>Seu negócio merece<br><em>aparecer, atrair</em><br>e vender no digital.</h1>
+    <p class="hero-sub">Estratégia de marketing com tecnologia e inteligência artificial para colocar pequenos negócios e empresas locais no mapa digital.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://wa.me/5597981156223?text=Ol%C3%A1%20Jayane!%20Vim%20pelo%20seu%20site%20e%20quero%20saber%20mais%20sobre%20seus%20servi%C3%A7os%20de%20marketing%20digital." target="_blank">
+        💬 Quero crescer no digital
+      </a>
+      <a class="btn-ghost" href="#servicos">Ver planos e preços ↓</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <span class="hero-stat-num">+20</span>
+        <span class="hero-stat-label">formações em tech & marketing</span>
+      </div>
+      <div>
+        <span class="hero-stat-num">3×</span>
+        <span class="hero-stat-label">mais alcance com estratégia</span>
+      </div>
+      <div>
+        <span class="hero-stat-num">100%</span>
+        <span class="hero-stat-label">resultado mensurável</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-photo-side">
+    <img class="hero-img" src="jayane-foto.jpg" alt="Jayane Borges — Especialista em Marketing Digital">
+    <div class="hero-float-card">
+      <div class="hero-float-icon">📈</div>
+      <div class="hero-float-text">
+        <strong>Resultado em 60 dias</strong>
+        <span>com gestão profissional</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BARRA DE CONFIANÇA -->
+<div class="confianca">
+  <p class="confianca-label">Formações & especializações</p>
+  <div class="confianca-itens">
+    <div class="confianca-item"><span>📲</span> Marketing Digital</div>
+    <div class="confianca-item"><span>🤖</span> IA Aplicada</div>
+    <div class="confianca-item"><span>💻</span> Informática</div>
+    <div class="confianca-item"><span>📊</span> Gestão de TI</div>
+    <div class="confianca-item"><span>🎓</span> Pedagogia</div>
+    <div class="confianca-item"><span>🛒</span> Técnica em Vendas</div>
+  </div>
+</div>
+
+<!-- PROBLEMA -->
+<section class="section problema section-center" id="problema">
+  <div class="section-header reveal">
+    <span class="eyebrow">Reconhece alguma dessas situações?</span>
+    <h2 class="section-title">O digital não está funcionando para o seu negócio?</h2>
+    <p class="section-desc" style="margin: 16px auto 0;">Você não está sozinho. Esses são os problemas mais comuns dos pequenos negócios que atendo.</p>
+  </div>
+  <div class="dores-grid">
+    <div class="dor-card reveal">
+      <div class="dor-icon">📵</div>
+      <h3>Perfil parado e sem engajamento</h3>
+      <p>Você tem um Instagram mas ele não atrai clientes nem gera vendas reais para o negócio.</p>
+    </div>
+    <div class="dor-card reveal">
+      <div class="dor-icon">🔍</div>
+      <h3>Invisível no digital</h3>
+      <p>Quando alguém pesquisa pelo seu serviço na sua cidade, você não aparece nos resultados.</p>
+    </div>
+    <div class="dor-card reveal">
+      <div class="dor-icon">📉</div>
+      <h3>Posta mas não vende</h3>
+      <p>Conteúdo sem estratégia não converte. Seguidores não viram clientes pagantes.</p>
+    </div>
+    <div class="dor-card reveal">
+      <div class="dor-icon">⏰</div>
+      <h3>Sem tempo para o marketing</h3>
+      <p>Você cuida do negócio e não tem tempo para pensar e executar a presença digital.</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUEM SOU -->
+<section class="section quem-sou" id="sobre">
+  <div class="quem-inner">
+    <div class="quem-visual reveal">
+      <div class="quem-img-wrap">
+        <img src="jayane-foto.jpg" alt="Jayane Borges">
+      </div>
+      <div class="quem-badge">
+        <span>+20</span>
+        formações
+      </div>
+      <div class="quem-exp-strip">Tefé, AM · Atende todo o Brasil</div>
+    </div>
+    <div class="quem-texto reveal">
+      <span class="eyebrow">Quem sou eu</span>
+      <h2>Olá, eu sou a Jayane.<br><em>Especialista em marketing digital</em> para negócios locais.</h2>
+      <p>Combino estratégia de marketing com tecnologia e inteligência artificial para criar uma presença digital que realmente gera resultado para pequenos negócios e empresas locais.</p>
+      <p>Não é só postar — é ter a mensagem certa, para a pessoa certa, na hora certa. Com dados reais e estratégia aplicada ao seu mercado.</p>
+      <div class="tags">
+        <span class="tag">📲 Marketing Digital</span>
+        <span class="tag">💻 Informática</span>
+        <span class="tag">🤖 IA Aplicada</span>
+        <span class="tag">📊 Gestão de TI</span>
+        <span class="tag">🎓 Pedagogia</span>
+        <span class="tag">🛒 Técnica em Vendas</span>
+      </div>
+      <a class="btn-primary" href="https://wa.me/5597981156223?text=Ol%C3%A1%20Jayane!%20Quero%20conhecer%20melhor%20o%20seu%20trabalho." target="_blank" style="align-self:flex-start;">
+        📩 Me envia uma mensagem
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESSO -->
+<section class="section processo section-center">
+  <div class="section-header reveal">
+    <span class="eyebrow">Como funciona</span>
+    <h2 class="section-title">Do primeiro contato ao resultado</h2>
+    <p class="section-desc" style="margin: 16px auto 0;">Um processo claro, transparente e focado em crescimento real para o seu negócio.</p>
+  </div>
+  <div class="processo-grid reveal">
+    <div class="processo-step">
+      <div class="step-num">01</div>
+      <span class="step-icon">💬</span>
+      <p class="step-title">Diagnóstico gratuito</p>
+      <p class="step-desc">Entendo seu negócio, seu público e seus objetivos em uma conversa rápida no WhatsApp.</p>
+    </div>
+    <div class="processo-step">
+      <div class="step-num">02</div>
+      <span class="step-icon">🎯</span>
+      <p class="step-title">Estratégia personalizada</p>
+      <p class="step-desc">Crio um plano de conteúdo e posicionamento exclusivo para o seu segmento e cidade.</p>
+    </div>
+    <div class="processo-step">
+      <div class="step-num">03</div>
+      <span class="step-icon">🚀</span>
+      <p class="step-title">Execução com IA</p>
+      <p class="step-desc">Produzo, publico e gerencio tudo com o suporte de ferramentas de inteligência artificial.</p>
+    </div>
+    <div class="processo-step">
+      <div class="step-num">04</div>
+      <span class="step-icon">📊</span>
+      <p class="step-title">Relatório e evolução</p>
+      <p class="step-desc">Você acompanha cada métrica mensalmente. Dados reais, sem enrolação.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS / PLANOS -->
+<section class="section servicos section-center" id="servicos">
+  <div class="section-header reveal" style="position:relative; z-index:1;">
+    <span class="eyebrow eyebrow-gold">Escolha o melhor plano</span>
+    <h2 class="section-title section-title-white">Planos de gestão de marketing</h2>
+    <p class="section-desc section-desc-white" style="margin: 16px auto 0;">Sem contrato longo. Sem taxa de setup. Você investe e acompanha o resultado todo mês.</p>
+  </div>
+  <div class="planos-grid">
+
+    <div class="plano reveal">
+      <p class="plano-tier">Ideal para começar</p>
+      <p class="plano-nome">Plano Essencial</p>
+      <div class="plano-preco">
+        <span class="preco-cifrao">R$</span>
+        <span class="preco-valor">497</span>
+        <span class="preco-periodo">/mês</span>
+      </div>
+      <hr class="plano-divider">
+      <ul class="plano-itens">
+        <li>8 posts por mês (feed + reels)</li>
+        <li>Reescrita de bio com CTA estratégico</li>
+        <li>Capas dos destaques padronizadas</li>
+        <li>Calendário editorial mensal</li>
+        <li>Legendas e hashtags estratégicas</li>
+        <li>1 relatório mensal de métricas</li>
+      </ul>
+      <a class="btn-plano btn-outline-w" href="https://wa.me/5597981156223?text=Ol%C3%A1%20Jayane!%20Tenho%20interesse%20no%20Plano%20Essencial%20de%20R%24497%2Fm%C3%AAs." target="_blank">Quero esse plano</a>
+    </div>
+
+    <div class="plano destaque reveal">
+      <span class="plano-badge-top">✦ Mais popular</span>
+      <p class="plano-tier">Crescimento acelerado</p>
+      <p class="plano-nome">Plano Profissional</p>
+      <div class="plano-preco">
+        <span class="preco-cifrao">R$</span>
+        <span class="preco-valor">897</span>
+        <span class="preco-periodo">/mês</span>
+      </div>
+      <hr class="plano-divider">
+      <ul class="plano-itens">
+        <li>16 posts/mês (feed, reels, carrosseis)</li>
+        <li>4 Reels com roteiro completo</li>
+        <li>Bio + identidade visual do feed</li>
+        <li>Stories diários estratégicos</li>
+        <li>Capas de destaques premium</li>
+        <li>Relatório detalhado mensal</li>
+      </ul>
+      <a class="btn-plano btn-gold" href="https://wa.me/5597981156223?text=Ol%C3%A1%20Jayane!%20Tenho%20interesse%20no%20Plano%20Profissional%20de%20R%24897%2Fm%C3%AAs." target="_blank">Quero esse plano</a>
+    </div>
+
+    <div class="plano reveal">
+      <p class="plano-tier">Gestão total</p>
+      <p class="plano-nome">Plano Completo</p>
+      <div class="plano-preco">
+        <span class="preco-cifrao">R$</span>
+        <span class="preco-valor">1.397</span>
+        <span class="preco-periodo">/mês</span>
+      </div>
+      <hr class="plano-divider">
+      <ul class="plano-itens">
+        <li>Posts diários (feed + stories + reels)</li>
+        <li>8 Reels por mês com edição</li>
+        <li>Identidade visual completa</li>
+        <li>Gestão de comentários e DMs</li>
+        <li>Orientação para fotos de produto</li>
+        <li>Relatório + reunião estratégica</li>
+      </ul>
+      <a class="btn-plano btn-outline-w" href="https://wa.me/5597981156223?text=Ol%C3%A1%20Jayane!%20Tenho%20interesse%20no%20Plano%20Completo%20de%20R%241.397%2Fm%C3%AAs." target="_blank">Quero esse plano</a>
+    </div>
+
+  </div>
+
+  <div class="avulsos reveal">
+    <span class="avulso-label">Serviços avulsos</span>
+    <span class="avulso-item">Apenas bio <span class="avulso-preco">R$ 150</span></span>
+    <span class="avulso-sep">·</span>
+    <span class="avulso-item">Apenas destaques <span class="avulso-preco">R$ 200</span></span>
+    <span class="avulso-sep">·</span>
+    <span class="avulso-item">Consultoria <span class="avulso-preco">R$ 250/hora</span></span>
+    <span class="avulso-sep">·</span>
+    <span class="avulso-item">Papelaria personalizada <span class="avulso-preco">sob consulta</span></span>
+  </div>
+</section>
+
+<!-- PROVA SOCIAL -->
+<section class="section provas section-center" id="resultados">
+  <div class="section-header reveal">
+    <span class="eyebrow">O que dizem os clientes</span>
+    <h2 class="section-title">Resultados reais de quem já investiu</h2>
+    <p class="section-desc" style="margin: 16px auto 0;">Não é promessa — é o que acontece quando estratégia encontra execução.</p>
+  </div>
+  <div class="deps-grid">
+    <div class="dep reveal">
+      <div class="dep-stars">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+      </div>
+      <p class="dep-quote">Antes do trabalho da Jayane, nosso perfil tinha 0 estratégia. Em 60 dias os clientes começaram a chegar dizendo que nos viram no Instagram. Resultado real e mensurável.</p>
+      <div class="dep-autor">
+        <div class="dep-avatar">SB</div>
+        <div>
+          <p class="dep-nome">Sorveteria Brothers</p>
+          <p class="dep-negocio">Sorveteria & Açaíteria — Tefé, AM</p>
+        </div>
+      </div>
+    </div>
+    <div class="dep reveal">
+      <div class="dep-stars">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+      </div>
+      <p class="dep-quote">A Jayane entendeu exatamente o que o meu negócio precisava. A bio nova, os destaques e os Reels transformaram o perfil. As mensagens no WhatsApp aumentaram muito.</p>
+      <div class="dep-autor">
+        <div class="dep-avatar" style="background:#D946A8;">M</div>
+        <div>
+          <p class="dep-nome">Maria Clara</p>
+          <p class="dep-negocio">Salão de Beleza</p>
+        </div>
+      </div>
+    </div>
+    <div class="dep reveal">
+      <div class="dep-stars">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+      </div>
+      <p class="dep-quote">Profissional incrível! Ela usa IA de um jeito que economiza tempo e aumenta qualidade. Em 30 dias já tinha resultado. Super recomendo para qualquer negócio local.</p>
+      <div class="dep-autor">
+        <div class="dep-avatar" style="background:#10B981;">R</div>
+        <div>
+          <p class="dep-nome">Roberto Alves</p>
+          <p class="dep-negocio">Clínica de Estética</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE BROTHERS -->
+<section class="section case section-center">
+  <div class="case-inner reveal">
+    <p class="case-eyebrow">📊 Case real — Sorveteria Brothers</p>
+    <h2>27.764 visualizações com zero estratégia.<br>Imagina com gestão profissional.</h2>
+    <p>A Sorveteria Brothers já tinha alcance orgânico. Com gestão profissional, esse número pode triplicar em 60 dias — mais clientes na loja, mais pedidos, mais faturamento.</p>
+    <div class="case-nums">
+      <div>
+        <span class="case-num-val">27.7k</span>
+        <span class="case-num-desc">Visualizações orgânicas</span>
+      </div>
+      <div>
+        <span class="case-num-val">57,4%</span>
+        <span class="case-num-desc">Views de não seguidores</span>
+      </div>
+      <div>
+        <span class="case-num-val">6.9k</span>
+        <span class="case-num-desc">Seguidores conquistados</span>
+      </div>
+      <div>
+        <span class="case-num-val">3×</span>
+        <span class="case-num-desc">Potencial de crescimento</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ / OBJEÇÕES -->
+<section class="section objecoes section-center" id="faq">
+  <div class="section-header reveal">
+    <span class="eyebrow">Tire suas dúvidas</span>
+    <h2 class="section-title">Perguntas frequentes</h2>
+  </div>
+  <div class="objecoes-grid">
+    <div class="obj-card reveal">
+      <p class="obj-pergunta">💰 É muito caro para o meu negócio?</p>
+      <p class="obj-resposta">Já calculou quanto custa NÃO ter marketing? Cada mês sem presença digital é um mês perdendo clientes para o concorrente. O investimento se paga com poucos novos clientes.</p>
+    </div>
+    <div class="obj-card reveal">
+      <p class="obj-pergunta">⏳ Demora para ver resultado?</p>
+      <p class="obj-resposta">Resultados orgânicos começam a aparecer em 30 a 60 dias. Relatório mensal com dados reais para você acompanhar cada etapa do crescimento.</p>
+    </div>
+    <div class="obj-card reveal">
+      <p class="obj-pergunta">📄 Preciso assinar contrato longo?</p>
+      <p class="obj-resposta">Não. Contrato mensal renovável, sem fidelidade e sem multa de saída. Você paga pelo resultado. Se não estiver satisfeito, encerra a qualquer mês.</p>
+    </div>
+    <div class="obj-card reveal">
+      <p class="obj-pergunta">🤔 Meu negócio é pequeno, vale a pena?</p>
+      <p class="obj-resposta">Pequenos negócios locais são exatamente o público que mais se beneficia. A concorrência digital local ainda é baixa — quem aparecer primeiro, domina o mercado.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <h2>Pronto para <em>colocar o seu negócio no digital</em> de verdade?</h2>
+  <p>Me chama no WhatsApp agora. Sem compromisso, sem enrolação. Vamos conversar sobre o seu negócio.</p>
+  <a class="btn-primary" href="https://wa.me/5597981156223?text=Ol%C3%A1%20Jayane!%20Vim%20pela%20sua%20p%C3%A1gina%20e%20quero%20saber%20mais%20sobre%20seus%20servi%C3%A7os%20de%20marketing%20digital%20para%20o%20meu%20neg%C3%B3cio." target="_blank" style="display:inline-flex;">
+    💬 Falar com a Jayane agora
+  </a>
+  <div class="cta-nota">
+    <span>Respondo em até 1 hora no horário comercial</span>
+    <span class="cta-nota-dot"></span>
+    <span>Atendo em todo o Brasil</span>
+    <span class="cta-nota-dot"></span>
+    <span>Sem compromisso</span>
+  </div>
+</section>
+
+<!-- RODAPÉ -->
+<footer>
+  <p class="footer-logo">Jayane <span>Borges</span></p>
+  <p class="footer-sub">Marketing Digital · Tecnologia · IA</p>
+  <div class="footer-links">
+    <a href="https://instagram.com/jayane.marketing" target="_blank">@jayane.marketing</a>
+    <a href="https://wa.me/5597981156223" target="_blank">WhatsApp</a>
+    <a href="#servicos">Planos</a>
+    <a href="#sobre">Sobre</a>
+  </div>
+  <p class="footer-copy">© 2025 Jayane Borges · Todos os direitos reservados · Tefé, AM</p>
+</footer>
+
+<script>
+  // Mobile nav
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
