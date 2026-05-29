@@ -226,49 +226,126 @@ nav.scrolled { box-shadow:0 4px 40px rgba(0,0,0,0.4); }
   line-height:1.45; max-width:90px;
 }
 
-/* hero photo */
+/* hero illustration */
 .hero-right {
   position:relative; height:100vh;
-  display:flex; align-items:flex-end; justify-content:center;
+  display:flex; align-items:center; justify-content:center;
   overflow:hidden;
   opacity:0; animation:fadeIn 1.1s ease .45s forwards;
 }
-.hero-right::before {
-  content:''; position:absolute; inset:0;
-  background:linear-gradient(to right, var(--p1) 0%, transparent 35%);
-  z-index:1;
-}
 .hero-right::after {
   content:''; position:absolute;
-  bottom:0; left:0; right:0; height:200px;
+  bottom:0; left:0; right:0; height:160px;
   background:linear-gradient(to top, var(--p1) 0%, transparent 100%);
-  z-index:1;
-}
-.hero-img {
-  width:100%; height:100%;
-  object-fit:cover; object-position:center top;
+  z-index:1; pointer-events:none;
 }
 
-.hero-pill {
-  position:absolute; z-index:5;
-  bottom:72px; left:36px;
-  background:rgba(255,255,255,0.07);
-  backdrop-filter:blur(24px);
-  -webkit-backdrop-filter:blur(24px);
-  border:1px solid rgba(255,255,255,0.14);
-  border-radius:18px; padding:16px 22px;
-  display:flex; align-items:center; gap:14px;
-  animation:fadeUp .9s ease .85s both;
+/* ── background bar chart ── */
+.bg-bars {
+  position:absolute; bottom:0; left:0; right:0; height:55%;
+  display:flex; align-items:flex-end; gap:10px;
+  padding:0 28px; opacity:.055; pointer-events:none;
 }
-.hero-pill-icon {
-  width:44px; height:44px;
-  background:linear-gradient(135deg,var(--g2),var(--g1));
-  border-radius:13px;
+.bg-bar {
+  flex:1; background:var(--p3);
+  border-radius:6px 6px 0 0;
+}
+
+/* ── phone mockup ── */
+.phone-wrap {
+  position:relative; z-index:3;
   display:flex; align-items:center; justify-content:center;
-  font-size:21px; flex-shrink:0;
 }
-.hero-pill-text strong { display:block; font-size:13px; font-weight:700; color:var(--white); margin-bottom:2px; }
-.hero-pill-text span { font-size:11px; color:rgba(255,255,255,0.45); }
+.phone-frame {
+  width:260px; height:520px;
+  background:linear-gradient(160deg,#1E1A5E,#0F0D38);
+  border-radius:42px;
+  border:2px solid rgba(255,255,255,0.16);
+  box-shadow:
+    0 40px 80px rgba(0,0,0,0.55),
+    0 0 0 1px rgba(255,255,255,0.04),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+  overflow:hidden; position:relative;
+}
+.phone-notch {
+  width:88px; height:22px;
+  background:#0A0820;
+  border-radius:0 0 16px 16px;
+  margin:0 auto; position:relative; z-index:2;
+}
+.phone-screen { padding:10px 14px 14px; }
+
+.insta-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+.insta-avatar {
+  width:40px; height:40px; border-radius:50%;
+  background:linear-gradient(135deg,var(--p3),var(--g2));
+  display:flex; align-items:center; justify-content:center;
+  color:var(--white); font-size:13px; font-weight:800; flex-shrink:0;
+  box-shadow:0 0 0 2.5px var(--g2), 0 0 0 4.5px rgba(240,160,48,0.2);
+}
+.insta-name { display:block; font-size:11.5px; font-weight:700; color:var(--white); }
+.insta-handle { display:block; font-size:9.5px; color:rgba(255,255,255,0.38); margin-top:1px; }
+
+.insta-stats {
+  display:flex; justify-content:space-around;
+  padding:10px 0; margin-bottom:12px;
+  border-top:1px solid rgba(255,255,255,0.07);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+}
+.insta-stats > div { text-align:center; }
+.insta-stats strong { display:block; font-size:14px; font-weight:900; color:var(--g2); }
+.insta-stats span { font-size:8.5px; color:rgba(255,255,255,0.35); text-transform:uppercase; letter-spacing:.06em; }
+
+.insta-chart {
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:10px; padding:10px 10px 6px;
+  margin-bottom:12px;
+}
+.insta-chart svg { width:100%; height:60px; display:block; }
+.chart-up-label { font-size:9.5px; color:var(--g2); font-weight:700; text-align:right; display:block; margin-top:3px; }
+
+.insta-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:3px; border-radius:8px; overflow:hidden; }
+.insta-post { aspect-ratio:1; }
+.post-a { background:linear-gradient(135deg,#6366f1,#8b5cf6); }
+.post-b { background:linear-gradient(135deg,#ec4899,#f43f5e); }
+.post-c { background:linear-gradient(135deg,#06b6d4,#3b82f6); }
+
+/* ── floating metric cards ── */
+.fl-card {
+  position:absolute; z-index:5;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,0.14);
+  border-radius:16px; padding:12px 16px;
+  display:flex; align-items:center; gap:10px;
+  white-space:nowrap;
+}
+.fl-icon {
+  width:36px; height:36px; border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:18px; flex-shrink:0;
+}
+.fl-icon-gold { background:rgba(240,160,48,0.2); }
+.fl-icon-green { background:rgba(16,185,129,0.2); }
+.fl-icon-blue { background:rgba(59,130,246,0.2); }
+.fl-icon-pink { background:rgba(236,72,153,0.2); }
+.fl-card strong { display:block; font-size:14px; font-weight:800; color:var(--white); }
+.fl-card small { display:block; font-size:9.5px; color:rgba(255,255,255,0.42); text-transform:uppercase; letter-spacing:.07em; margin-top:1px; }
+
+.fl-card-1 { top:17%; left:-4%; animation:floatA 3.5s ease-in-out infinite; }
+.fl-card-2 { top:17%; right:-4%; animation:floatB 3.5s ease-in-out infinite .6s; }
+.fl-card-3 { bottom:22%; left:-4%; animation:floatA 3.5s ease-in-out infinite 1.1s; }
+.fl-card-4 { bottom:22%; right:-4%; animation:floatB 3.5s ease-in-out infinite 1.7s; }
+
+@keyframes floatA {
+  0%,100% { transform:translateY(0px); }
+  50%      { transform:translateY(-7px); }
+}
+@keyframes floatB {
+  0%,100% { transform:translateY(0px); }
+  50%      { transform:translateY(7px); }
+}
 
 /* ════════════════════════════════════════
    NÚMEROS (SOCIAL PROOF STRIP)
@@ -428,6 +505,7 @@ nav.scrolled { box-shadow:0 4px 40px rgba(0,0,0,0.4); }
   background:linear-gradient(to top, rgba(18,16,74,0.18) 0%, transparent 50%);
 }
 .quem-img-wrap img { width:100%; height:100%; object-fit:cover; object-position:center top; }
+.quem-placeholder { width:100%; height:100%; position:relative; overflow:hidden; }
 
 .quem-badge-gold {
   position:absolute; bottom:-18px; right:-18px;
@@ -897,11 +975,14 @@ footer {
   .hero-sub { max-width:100%; margin-left:auto; margin-right:auto; }
   .hero-actions { justify-content:center; }
   .hero-stats { justify-content:center; }
-  .hero-right { height:56vw; min-height:320px; }
-  .hero-right::before {
-    background:linear-gradient(to bottom, var(--p1) 0%, transparent 30%);
-  }
-  .hero-pill { display:none; }
+  .hero-right { height:60vw; min-height:340px; }
+  .phone-frame { width:180px; height:360px; border-radius:28px; }
+  .fl-card-1,.fl-card-2 { top:8%; }
+  .fl-card-3,.fl-card-4 { bottom:12%; }
+  .fl-card { padding:8px 11px; border-radius:11px; gap:7px; }
+  .fl-card strong { font-size:11px; }
+  .fl-card small { font-size:8px; }
+  .fl-icon { width:26px; height:26px; font-size:13px; border-radius:7px; }
 
   .strip-nums-inner { grid-template-columns:repeat(2,1fr); }
   .strip-num-item:nth-child(2) { border-right:none; }
@@ -995,12 +1076,78 @@ footer {
   </div>
 
   <div class="hero-right">
-    <img class="hero-img" src="jayane-foto.jpg" alt="Jayane Borges — Especialista em Marketing Digital">
-    <div class="hero-pill">
-      <div class="hero-pill-icon">📈</div>
-      <div class="hero-pill-text">
-        <strong>Resultado em 60 dias</strong>
-        <span>com gestão profissional</span>
+    <!-- background bars -->
+    <div class="bg-bars">
+      <div class="bg-bar" style="height:30%"></div>
+      <div class="bg-bar" style="height:48%"></div>
+      <div class="bg-bar" style="height:38%"></div>
+      <div class="bg-bar" style="height:62%"></div>
+      <div class="bg-bar" style="height:52%"></div>
+      <div class="bg-bar" style="height:75%"></div>
+      <div class="bg-bar" style="height:88%"></div>
+      <div class="bg-bar" style="height:100%"></div>
+    </div>
+
+    <!-- phone mockup -->
+    <div class="phone-wrap">
+
+      <!-- floating metric cards -->
+      <div class="fl-card fl-card-1">
+        <div class="fl-icon fl-icon-gold">📈</div>
+        <div><strong>+185%</strong><small>Alcance</small></div>
+      </div>
+      <div class="fl-card fl-card-2">
+        <div class="fl-icon fl-icon-green">💬</div>
+        <div><strong>+92</strong><small>Mensagens</small></div>
+      </div>
+      <div class="fl-card fl-card-3">
+        <div class="fl-icon fl-icon-blue">👥</div>
+        <div><strong>+3.2k</strong><small>Seguidores</small></div>
+      </div>
+      <div class="fl-card fl-card-4">
+        <div class="fl-icon fl-icon-pink">⭐</div>
+        <div><strong>4.9/5</strong><small>Avaliação</small></div>
+      </div>
+
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <!-- profile header -->
+          <div class="insta-header">
+            <div class="insta-avatar">JB</div>
+            <div>
+              <span class="insta-name">jayane.marketing</span>
+              <span class="insta-handle">Marketing Digital • IA</span>
+            </div>
+          </div>
+          <!-- stats -->
+          <div class="insta-stats">
+            <div><strong>6.9k</strong><span>seguidores</span></div>
+            <div><strong>42</strong><span>posts</span></div>
+            <div><strong>18%</strong><span>engaj.</span></div>
+          </div>
+          <!-- line chart -->
+          <div class="insta-chart">
+            <svg viewBox="0 0 230 60" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="cg" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#F0A030" stop-opacity=".45"/>
+                  <stop offset="100%" stop-color="#F0A030" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path d="M0,55 C20,52 40,48 60,42 S90,32 110,26 S150,14 170,9 S205,4 230,2 L230,60 L0,60 Z" fill="url(#cg)"/>
+              <path d="M0,55 C20,52 40,48 60,42 S90,32 110,26 S150,14 170,9 S205,4 230,2" fill="none" stroke="#F0A030" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="230" cy="2" r="4" fill="#F0A030"/>
+            </svg>
+            <span class="chart-up-label">↑ +185% em 60 dias</span>
+          </div>
+          <!-- post grid -->
+          <div class="insta-grid">
+            <div class="insta-post post-a"></div>
+            <div class="insta-post post-b"></div>
+            <div class="insta-post post-c"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1077,7 +1224,32 @@ footer {
   <div class="quem-inner">
     <div class="quem-visual reveal">
       <div class="quem-img-wrap">
-        <img src="jayane-foto.jpg" alt="Jayane Borges">
+        <div class="quem-placeholder">
+          <svg viewBox="0 0 240 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;position:absolute;top:0;left:0;">
+            <rect width="240" height="300" fill="url(#qg)"/>
+            <defs>
+              <linearGradient id="qg" x1="0" y1="0" x2="240" y2="300" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#4F46C8"/>
+                <stop offset="1" stop-color="#12104A"/>
+              </linearGradient>
+            </defs>
+            <!-- abstract person silhouette -->
+            <circle cx="120" cy="90" r="38" fill="rgba(240,160,48,0.25)" stroke="rgba(240,160,48,0.5)" stroke-width="2"/>
+            <path d="M60 220 Q60 165 120 165 Q180 165 180 220 L180 300 L60 300 Z" fill="rgba(79,70,200,0.4)" stroke="rgba(79,70,200,0.6)" stroke-width="1.5"/>
+            <!-- decorative elements -->
+            <circle cx="40" cy="140" r="20" fill="none" stroke="rgba(240,160,48,0.2)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <circle cx="200" cy="80" r="28" fill="none" stroke="rgba(79,70,200,0.3)" stroke-width="1.5" stroke-dasharray="5 4"/>
+            <!-- chart bars at bottom -->
+            <rect x="20" y="255" width="18" height="30" rx="4" fill="rgba(240,160,48,0.4)"/>
+            <rect x="44" y="242" width="18" height="43" rx="4" fill="rgba(240,160,48,0.5)"/>
+            <rect x="68" y="232" width="18" height="53" rx="4" fill="rgba(240,160,48,0.6)"/>
+            <rect x="92" y="218" width="18" height="67" rx="4" fill="rgba(240,160,48,0.7)"/>
+            <rect x="116" y="205" width="18" height="80" rx="4" fill="rgba(240,160,48,0.85)"/>
+            <rect x="140" y="193" width="18" height="92" rx="4" fill="rgba(240,160,48,1)"/>
+            <!-- growth arrow -->
+            <path d="M170 270 L210 220 M200 218 L210 220 L208 231" stroke="#F0A030" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
       </div>
       <div class="quem-badge-gold"><span>+20</span>formações</div>
       <div class="quem-badge-dark">Tefé, AM · Atende todo o Brasil</div>
