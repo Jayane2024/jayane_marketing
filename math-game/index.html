@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MathQuest - Jogo de Matemática</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --purple: #7c3aed;
+    --purple-light: #a78bfa;
+    --green: #10b981;
+    --red: #ef4444;
+    --yellow: #f59e0b;
+    --blue: #3b82f6;
+    --bg: #0f172a;
+    --card: #1e293b;
+    --card2: #334155;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+  }
+
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+  }
+
+  /* ── TELA INICIAL ─────────────────────────────────── */
+  #screen-start {
+    text-align: center;
+    max-width: 480px;
+    padding: 2rem 1.5rem;
+    animation: fadeIn .5s ease;
+  }
+
+  .logo {
+    font-size: 3.5rem;
+    margin-bottom: .5rem;
+  }
+
+  #screen-start h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--purple-light), var(--blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: .4rem;
+  }
+
+  .subtitle {
+    color: var(--muted);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .categories-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .85rem;
+    margin-bottom: 2rem;
+  }
+
+  .cat-btn {
+    background: var(--card);
+    border: 2px solid var(--card2);
+    border-radius: 14px;
+    padding: 1.1rem .8rem;
+    cursor: pointer;
+    transition: all .2s;
+    color: var(--text);
+    font-size: .9rem;
+    font-weight: 600;
+  }
+
+  .cat-btn .cat-icon { font-size: 1.8rem; display: block; margin-bottom: .4rem; }
+
+  .cat-btn:hover, .cat-btn.selected {
+    border-color: var(--purple-light);
+    background: #2d1f5e;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(124,58,237,.35);
+  }
+
+  .level-row {
+    display: flex;
+    gap: .6rem;
+    justify-content: center;
+    margin-bottom: 1.6rem;
+    flex-wrap: wrap;
+  }
+
+  .level-btn {
+    padding: .5rem 1.2rem;
+    border-radius: 999px;
+    border: 2px solid var(--card2);
+    background: var(--card);
+    color: var(--muted);
+    font-size: .85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all .2s;
+  }
+
+  .level-btn.selected {
+    border-color: var(--yellow);
+    background: #3b2a00;
+    color: var(--yellow);
+  }
+
+  .btn-start {
+    background: linear-gradient(135deg, var(--purple), var(--blue));
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    padding: .9rem 2.5rem;
+    font-size: 1.15rem;
+    font-weight: 800;
+    cursor: pointer;
+    letter-spacing: .03em;
+    transition: transform .15s, box-shadow .15s;
+    box-shadow: 0 6px 20px rgba(124,58,237,.4);
+    width: 100%;
+  }
+
+  .btn-start:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(124,58,237,.55); }
+
+  /* ── TELA DO JOGO ─────────────────────────────────── */
+  #screen-game {
+    width: 100%;
+    max-width: 520px;
+    padding: 1.5rem;
+    animation: fadeIn .4s ease;
+  }
+
+  .hud {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.2rem;
+  }
+
+  .score-box {
+    background: var(--card);
+    border-radius: 10px;
+    padding: .4rem .9rem;
+    font-size: .85rem;
+    font-weight: 700;
+  }
+
+  .score-box span { color: var(--purple-light); font-size: 1.1rem; }
+
+  .lives { font-size: 1.3rem; letter-spacing: .1rem; }
+
+  .timer-wrap {
+    position: relative;
+    width: 50px; height: 50px;
+  }
+
+  .timer-wrap svg { transform: rotate(-90deg); }
+
+  .timer-wrap circle {
+    fill: none;
+    stroke-width: 5;
+    stroke-linecap: round;
+    transition: stroke-dashoffset .9s linear, stroke .5s;
+  }
+
+  .timer-bg { stroke: var(--card2); }
+  .timer-fg { stroke: var(--green); stroke-dasharray: 126; stroke-dashoffset: 0; }
+
+  .timer-num {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .95rem;
+    font-weight: 800;
+  }
+
+  .progress-bar {
+    height: 5px;
+    background: var(--card2);
+    border-radius: 999px;
+    margin-bottom: 1.4rem;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--purple), var(--blue));
+    border-radius: 999px;
+    transition: width .4s ease;
+  }
+
+  .question-card {
+    background: var(--card);
+    border-radius: 18px;
+    padding: 1.8rem 1.5rem;
+    margin-bottom: 1.2rem;
+    border: 1px solid var(--card2);
+  }
+
+  .question-label {
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--purple-light);
+    margin-bottom: .8rem;
+  }
+
+  .question-text {
+    font-size: 1.55rem;
+    font-weight: 700;
+    line-height: 1.35;
+    word-break: break-word;
+  }
+
+  .hint-text {
+    font-size: .8rem;
+    color: var(--muted);
+    margin-top: .6rem;
+  }
+
+  .options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .75rem;
+  }
+
+  .opt-btn {
+    background: var(--card);
+    border: 2px solid var(--card2);
+    border-radius: 14px;
+    padding: 1rem .8rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    cursor: pointer;
+    transition: all .15s;
+    letter-spacing: .02em;
+  }
+
+  .opt-btn:hover:not(:disabled) {
+    border-color: var(--purple-light);
+    background: #2d1f5e;
+  }
+
+  .opt-btn.correct {
+    border-color: var(--green);
+    background: #064e35;
+    color: #6ee7b7;
+    animation: pop .25s ease;
+  }
+
+  .opt-btn.wrong {
+    border-color: var(--red);
+    background: #4b1010;
+    color: #fca5a5;
+    animation: shake .3s ease;
+  }
+
+  .opt-btn:disabled { cursor: default; }
+
+  /* ── FEEDBACK ─────────────────────────────────────── */
+  #feedback-bar {
+    position: fixed;
+    top: 1.2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(-80px);
+    background: var(--card);
+    border-radius: 12px;
+    padding: .7rem 1.4rem;
+    font-weight: 700;
+    font-size: .95rem;
+    border: 2px solid var(--card2);
+    transition: transform .3s cubic-bezier(.34,1.56,.64,1);
+    z-index: 100;
+    white-space: nowrap;
+  }
+
+  #feedback-bar.show { transform: translateX(-50%) translateY(0); }
+  #feedback-bar.correct { border-color: var(--green); color: #6ee7b7; }
+  #feedback-bar.wrong { border-color: var(--red); color: #fca5a5; }
+
+  /* ── TELA DE RESULTADO ────────────────────────────── */
+  #screen-result {
+    text-align: center;
+    max-width: 420px;
+    padding: 2.5rem 1.5rem;
+    animation: fadeIn .5s ease;
+  }
+
+  .result-emoji { font-size: 4rem; margin-bottom: .5rem; }
+
+  #screen-result h2 {
+    font-size: 1.9rem;
+    font-weight: 800;
+    margin-bottom: .5rem;
+  }
+
+  .result-score {
+    font-size: 3.5rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--yellow), var(--green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: .5rem 0;
+  }
+
+  .result-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: .8rem;
+    margin: 1.5rem 0;
+  }
+
+  .stat-box {
+    background: var(--card);
+    border-radius: 12px;
+    padding: .9rem .5rem;
+    border: 1px solid var(--card2);
+  }
+
+  .stat-box .val { font-size: 1.4rem; font-weight: 800; color: var(--purple-light); }
+  .stat-box .lbl { font-size: .7rem; color: var(--muted); margin-top: .2rem; }
+
+  .stars { font-size: 1.8rem; margin-bottom 1rem; letter-spacing: .15rem; }
+
+  .result-btns { display: flex; gap: .8rem; margin-top: 1.4rem; }
+
+  .btn-outline {
+    flex: 1;
+    background: transparent;
+    border: 2px solid var(--card2);
+    border-radius: 12px;
+    padding: .8rem;
+    color: var(--text);
+    font-size: .9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all .2s;
+  }
+
+  .btn-outline:hover { border-color: var(--purple-light); background: #2d1f5e; }
+
+  /* ── COMBO ────────────────────────────────────────── */
+  .combo-badge {
+    position: fixed;
+    bottom: 5rem;
+    right: 1.5rem;
+    background: linear-gradient(135deg, var(--yellow), #f97316);
+    color: #000;
+    border-radius: 12px;
+    padding: .5rem .9rem;
+    font-weight: 900;
+    font-size: .9rem;
+    opacity: 0;
+    transform: scale(.6);
+    transition: all .3s cubic-bezier(.34,1.56,.64,1);
+    z-index: 50;
+  }
+
+  .combo-badge.show { opacity: 1; transform: scale(1); }
+
+  /* ── ANIMAÇÕES ────────────────────────────────────── */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pop {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.06); }
+    100% { transform: scale(1); }
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25%       { transform: translateX(-6px); }
+    75%       { transform: translateX(6px); }
+  }
+
+  @keyframes confetti-fall {
+    to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+  }
+
+  .confetti-piece {
+    position: fixed;
+    top: -20px;
+    border-radius: 3px;
+    animation: confetti-fall linear forwards;
+    z-index: 200;
+    pointer-events: none;
+  }
+
+  /* ── CATEGORY TAG ─────────────────────────────────── */
+  .cat-tag {
+    display: inline-block;
+    font-size: .7rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    padding: .2rem .7rem;
+    margin-bottom: .6rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 440px) {
+    .question-text { font-size: 1.3rem; }
+    .categories-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── TELA INICIAL ──────────────────────────────────── -->
+<div id="screen-start">
+  <div class="logo">🧮</div>
+  <h1>MathQuest</h1>
+  <p class="subtitle">Jogo de Matemática · Ensino Fundamental II</p>
+
+  <div class="categories-grid" id="cat-grid">
+    <button class="cat-btn selected" data-cat="all">
+      <span class="cat-icon">🌟</span>Todos
+    </button>
+    <button class="cat-btn" data-cat="arithmetic">
+      <span class="cat-icon">➕</span>Aritmética
+    </button>
+    <button class="cat-btn" data-cat="fractions">
+      <span class="cat-icon">🍕</span>Frações
+    </button>
+    <button class="cat-btn" data-cat="algebra">
+      <span class="cat-icon">🔣</span>Álgebra
+    </button>
+    <button class="cat-btn" data-cat="percent">
+      <span class="cat-icon">💯</span>Porcentagem
+    </button>
+    <button class="cat-btn" data-cat="geometry">
+      <span class="cat-icon">📐</span>Geometria
+    </button>
+  </div>
+
+  <div style="margin-bottom:.8rem; color:var(--muted); font-size:.85rem; font-weight:700; letter-spacing:.05em;">DIFICULDADE</div>
+  <div class="level-row" id="level-row">
+    <button class="level-btn selected" data-lvl="easy">😊 Fácil</button>
+    <button class="level-btn" data-lvl="medium">🤔 Médio</button>
+    <button class="level-btn" data-lvl="hard">🔥 Difícil</button>
+  </div>
+
+  <button class="btn-start" onclick="startGame()">▶ Começar Jogo</button>
+</div>
+
+<!-- ── TELA DO JOGO ──────────────────────────────────── -->
+<div id="screen-game" style="display:none">
+  <div class="hud">
+    <div class="score-box">Pontos: <span id="score-val">0</span></div>
+    <div id="lives-disp" class="lives">❤️❤️❤️</div>
+    <div class="timer-wrap">
+      <svg width="50" height="50" viewBox="0 0 50 50">
+        <circle class="timer-bg" cx="25" cy="25" r="20"/>
+        <circle class="timer-fg" id="timer-circle" cx="25" cy="25" r="20"/>
+      </svg>
+      <div class="timer-num" id="timer-num">30</div>
+    </div>
+  </div>
+
+  <div class="progress-bar">
+    <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-label">Questão <span id="q-num">1</span> / <span id="q-total">10</span></div>
+    <div id="cat-tag-display" class="cat-tag"></div>
+    <div class="question-text" id="question-text">–</div>
+    <div class="hint-text" id="hint-text"></div>
+  </div>
+
+  <div class="options-grid" id="options-grid"></div>
+</div>
+
+<!-- ── TELA DE RESULTADO ─────────────────────────────── -->
+<div id="screen-result" style="display:none">
+  <div class="result-emoji" id="result-emoji">🏆</div>
+  <h2 id="result-title">Parabéns!</h2>
+  <div class="result-score" id="result-score">0 pts</div>
+  <div class="stars" id="result-stars">⭐⭐⭐</div>
+
+  <div class="result-stats">
+    <div class="stat-box">
+      <div class="val" id="stat-correct">0</div>
+      <div class="lbl">Certas</div>
+    </div>
+    <div class="stat-box">
+      <div class="val" id="stat-wrong">0</div>
+      <div class="lbl">Erradas</div>
+    </div>
+    <div class="stat-box">
+      <div class="val" id="stat-acc">0%</div>
+      <div class="lbl">Acerto</div>
+    </div>
+  </div>
+
+  <div class="result-btns">
+    <button class="btn-outline" onclick="goHome()">🏠 Menu</button>
+    <button class="btn-start" onclick="startGame()" style="flex:1.4">🔄 Jogar de Novo</button>
+  </div>
+</div>
+
+<!-- feedback toast -->
+<div id="feedback-bar">–</div>
+<!-- combo badge -->
+<div class="combo-badge" id="combo-badge">🔥 COMBO x3</div>
+
+<script>
+// ── STATE ──────────────────────────────────────────────────────────────────
+let selectedCat = 'all';
+let selectedLvl = 'easy';
+let questions   = [];
+let qIndex      = 0;
+let score       = 0;
+let lives       = 3;
+let correct     = 0;
+let wrong       = 0;
+let combo       = 0;
+let timerVal    = 30;
+let timerInterval= null;
+const TOTAL_Q   = 10;
+
+// ── CATEGORY CONFIG ────────────────────────────────────────────────────────
+const catColors = {
+  arithmetic: { bg:'#1e3a5f', text:'#60a5fa', label:'Aritmética' },
+  fractions:  { bg:'#3b1f5e', text:'#c084fc', label:'Frações'    },
+  algebra:    { bg:'#1e4d3b', text:'#34d399', label:'Álgebra'    },
+  percent:    { bg:'#4d3800', text:'#fbbf24', label:'Porcentagem'},
+  geometry:   { bg:'#4d1f1f', text:'#f87171', label:'Geometria'  },
+};
+
+// ── QUESTION GENERATORS ────────────────────────────────────────────────────
+function rnd(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function makeOptions(correct, count = 4, range = 10) {
+  const opts = new Set([correct]);
+  let attempts = 0;
+  while (opts.size < count && attempts < 60) {
+    attempts++;
+    const delta = rnd(1, range);
+    const sign  = Math.random() < .5 ? 1 : -1;
+    opts.add(correct + sign * delta);
+  }
+  return shuffle([...opts]).slice(0, count);
+}
+
+// ──── ARITHMETIC ──────────────────────────────────────
+function genArithmetic(lvl) {
+  const type = rnd(0, lvl === 'easy' ? 2 : lvl === 'medium' ? 3 : 4);
+
+  if (type === 0) { // soma
+    const [a, b] = lvl === 'easy' ? [rnd(1,30), rnd(1,30)]
+                  : lvl === 'medium' ? [rnd(20,200), rnd(20,200)]
+                  : [rnd(100,999), rnd(100,999)];
+    return { q: `${a} + ${b} = ?`, ans: a+b, hint:'Soma' };
+  }
+  if (type === 1) { // subtração
+    const b = lvl === 'easy' ? rnd(1,20) : rnd(10,100);
+    const a = b + rnd(1, lvl === 'easy' ? 20 : 100);
+    return { q: `${a} − ${b} = ?`, ans: a-b, hint:'Subtração' };
+  }
+  if (type === 2) { // multiplicação
+    const [a, b] = lvl === 'easy' ? [rnd(2,9), rnd(2,9)]
+                  : lvl === 'medium' ? [rnd(5,20), rnd(5,20)]
+                  : [rnd(12,50), rnd(12,50)];
+    return { q: `${a} × ${b} = ?`, ans: a*b, hint:'Multiplicação' };
+  }
+  if (type === 3) { // divisão inteira
+    const b = rnd(2, lvl === 'medium' ? 12 : 20);
+    const q2 = rnd(2, lvl === 'medium' ? 15 : 30);
+    return { q: `${b*q2} ÷ ${b} = ?`, ans: q2, hint:'Divisão' };
+  }
+  // MMC / MDC simples
+  const a = rnd(2,10) * rnd(1,4);
+  const b = rnd(2,10) * rnd(1,3);
+  const gcd = (x,y) => y ? gcd(y, x%y) : x;
+  const d = gcd(a,b);
+  const type2 = Math.random() < .5;
+  if (type2) return { q: `MDC(${a}, ${b}) = ?`, ans: d, hint: 'Máximo Divisor Comum' };
+  return { q: `MMC(${a}, ${b}) = ?`, ans: (a*b)/d, hint: 'Mínimo Múltiplo Comum' };
+}
+
+// ──── FRACTIONS ───────────────────────────────────────
+function genFractions(lvl) {
+  if (lvl === 'easy') {
+    const den  = rnd(2,8);
+    const numA = rnd(1,den-1);
+    const numB = rnd(1,den-1);
+    const sum  = numA + numB;
+    if (sum < den) return { q: `${numA}/${den} + ${numB}/${den} = ?/? (numerador)`, ans: sum, hint: 'Frações com mesmo denominador' };
+    return { q: `${numA}/${den} + ${numB}/${den} = ? (como número misto, parte inteira)`, ans: Math.floor(sum/den), hint: 'Frações — resultado misto' };
+  }
+  if (lvl === 'medium') {
+    const d1 = rnd(2,6), d2 = rnd(2,6);
+    const n1 = rnd(1, d1), n2 = rnd(1, d2);
+    const lcd = (a,b) => a*b / ((x=>y=>y?x(y,a*b/gcd(x,y)):a*b/gcd(a,b))(a)(b)); // eslint-disable-line
+    const gcd2 = (a,b) => b ? gcd2(b,a%b):a;
+    const L = (d1*d2)/gcd2(d1,d2);
+    const num = n1*(L/d1) + n2*(L/d2);
+    const g   = gcd2(Math.abs(num), L);
+    return { q: `${n1}/${d1} + ${n2}/${d2} = ? (numerador da forma reduzida, denominador ${L/g})`, ans: num/g, hint: 'Frações com denominadores diferentes' };
+  }
+  // hard: multiplicação de frações
+  const n1 = rnd(1,6), d1 = rnd(2,8), n2 = rnd(1,6), d2 = rnd(2,8);
+  const gcd2 = (a,b) => b ? gcd2(b,a%b):a;
+  const rn = n1*n2, rd = d1*d2, g = gcd2(rn,rd);
+  return { q: `${n1}/${d1} × ${n2}/${d2} = ? (numerador da forma reduzida)`, ans: rn/g, hint: 'Multiplicação de frações — simplifique' };
+}
+
+// ──── ALGEBRA ─────────────────────────────────────────
+function genAlgebra(lvl) {
+  if (lvl === 'easy') {
+    const a = rnd(2,10), b = rnd(1,20), c = rnd(b+1, b+40);
+    return { q: `x + ${b} = ${c}\nQual é o valor de x?`, ans: c-b, hint: 'Equação do 1º grau' };
+  }
+  if (lvl === 'medium') {
+    const a = rnd(2,8), b = rnd(1,15), c = rnd(1,30);
+    const x = c - b, positivo = x > 0;
+    const ans2 = rnd(2,10);
+    const rhs = a*ans2 + b;
+    return { q: `${a}x + ${b} = ${rhs}\nQual é o valor de x?`, ans: ans2, hint: 'Equação do 1º grau' };
+  }
+  // hard: equação do 2º grau simples x²= k
+  const k = rnd(1,12) ** 2;
+  return { q: `x² = ${k}\nx > 0, logo x = ?`, ans: Math.sqrt(k), hint: 'Equação do 2º grau simples' };
+}
+
+// ──── PERCENTAGE ──────────────────────────────────────
+function genPercent(lvl) {
+  if (lvl === 'easy') {
+    const pcts = [10,20,25,50];
+    const p    = pcts[rnd(0,pcts.length-1)];
+    const base = rnd(2,20) * 10;
+    return { q: `${p}% de ${base} = ?`, ans: base*p/100, hint: 'Porcentagem básica' };
+  }
+  if (lvl === 'medium') {
+    const p    = rnd(1,9)*10 + (Math.random()<.5 ? 5 : 0);
+    const base = rnd(10,200);
+    return { q: `${p}% de ${base} = ?`, ans: Math.round(base*p/100), hint: 'Porcentagem' };
+  }
+  // hard: desconto / aumento
+  const base  = rnd(5,20)*10;
+  const disc  = [5,10,15,20,25,30][rnd(0,5)];
+  const type2 = Math.random() < .5;
+  if (type2) return { q: `Um produto custa R$ ${base}.\nCom ${disc}% de desconto, fica quanto?`, ans: base - base*disc/100, hint: 'Desconto percentual' };
+  return { q: `Um produto custa R$ ${base}.\nCom aumento de ${disc}%, fica quanto?`, ans: base + base*disc/100, hint: 'Aumento percentual' };
+}
+
+// ──── GEOMETRY ────────────────────────────────────────
+function genGeometry(lvl) {
+  if (lvl === 'easy') {
+    const shapes = [
+      () => { const l = rnd(2,15); return { q: `Quadrado de lado ${l} cm\nÁrea = ? cm²`, ans: l*l }; },
+      () => { const [l,w] = [rnd(3,12), rnd(2,10)]; return { q: `Retângulo ${l}×${w} cm\nÁrea = ? cm²`, ans: l*w }; },
+      () => { const [b,h] = [rnd(4,14), rnd(3,10)]; return { q: `Triângulo: base ${b} cm, altura ${h} cm\nÁrea = ? cm²`, ans: (b*h)/2 }; },
+    ];
+    const s = shapes[rnd(0,2)]();
+    return { ...s, hint: 'Área de figuras planas' };
+  }
+  if (lvl === 'medium') {
+    const type2 = rnd(0,2);
+    if (type2 === 0) {
+      const [b,h] = [rnd(4,16), rnd(3,12)];
+      return { q: `Trapézio: base maior ${b+4}, base menor ${b}, altura ${h}\nÁrea = ?`, ans: ((b+4+b)*h)/2, hint: 'Área do trapézio' };
+    }
+    if (type2 === 1) {
+      const l = rnd(3,12);
+      return { q: `Quadrado de lado ${l} cm\nPerímetro = ? cm`, ans: 4*l, hint: 'Perímetro' };
+    }
+    const [l,w] = [rnd(4,14), rnd(3,10)];
+    return { q: `Retângulo ${l}×${w} cm\nPerímetro = ? cm`, ans: 2*(l+w), hint: 'Perímetro' };
+  }
+  // hard: Pitágoras
+  const pythTriples = [[3,4,5],[5,12,13],[8,15,17],[6,8,10],[9,12,15]];
+  const t = pythTriples[rnd(0,4)];
+  const k = rnd(1,4);
+  const [a,b,c] = t.map(x=>x*k);
+  const side = rnd(0,1);
+  if (side === 0) return { q: `Triângulo retângulo\ncateto a = ${a}, cateto b = ${b}\nhipotenusa c = ?`, ans: c, hint: 'Teorema de Pitágoras: c² = a² + b²' };
+  return { q: `Triângulo retângulo\nhipotenusa c = ${c}, cateto a = ${a}\ncateto b = ?`, ans: b, hint: 'Teorema de Pitágoras: b² = c² − a²' };
+}
+
+// ──── QUESTION PICKER ─────────────────────────────────
+function genQuestion(cat, lvl) {
+  const cats = cat === 'all'
+    ? ['arithmetic','fractions','algebra','percent','geometry']
+    : [cat];
+  const chosen = cats[rnd(0, cats.length-1)];
+  let raw;
+  switch (chosen) {
+    case 'arithmetic': raw = genArithmetic(lvl); break;
+    case 'fractions':  raw = genFractions(lvl);  break;
+    case 'algebra':    raw = genAlgebra(lvl);    break;
+    case 'percent':    raw = genPercent(lvl);    break;
+    case 'geometry':   raw = genGeometry(lvl);   break;
+  }
+  const ans = parseFloat(raw.ans.toFixed(4));
+  const range = lvl === 'easy' ? 8 : lvl === 'medium' ? 15 : 25;
+  const opts  = makeOptions(ans, 4, range).map(o => parseFloat(o.toFixed(4)));
+  // ensure correct is in options
+  if (!opts.includes(ans)) { opts[rnd(0,3)] = ans; }
+  return { category: chosen, question: raw.q, hint: raw.hint || '', answer: ans, options: shuffle(opts) };
+}
+
+function buildQuestions() {
+  const qs = [];
+  for (let i = 0; i < TOTAL_Q; i++) {
+    qs.push(genQuestion(selectedCat, selectedLvl));
+  }
+  return qs;
+}
+
+// ── UI HELPERS ────────────────────────────────────────────────────────────
+function showScreen(id) {
+  ['screen-start','screen-game','screen-result'].forEach(s => {
+    document.getElementById(s).style.display = s === id ? 'block' : 'none';
+  });
+}
+
+function updateLives() {
+  const d = document.getElementById('lives-disp');
+  d.textContent = '❤️'.repeat(lives) + '🖤'.repeat(3 - lives);
+}
+
+let timerCircle, timerNumEl;
+function startTimer() {
+  timerCircle = document.getElementById('timer-circle');
+  timerNumEl  = document.getElementById('timer-num');
+  const seconds = selectedLvl === 'easy' ? 30 : selectedLvl === 'medium' ? 25 : 20;
+  timerVal = seconds;
+  const circumference = 2 * Math.PI * 20; // 125.66
+
+  clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    timerVal--;
+    timerNumEl.textContent = timerVal;
+    const offset = circumference * (1 - timerVal/seconds);
+    timerCircle.style.strokeDashoffset = offset;
+    timerCircle.style.stroke = timerVal > 10 ? 'var(--green)' : timerVal > 5 ? 'var(--yellow)' : 'var(--red)';
+    if (timerVal <= 0) {
+      clearInterval(timerInterval);
+      handleTimeout();
+    }
+  }, 1000);
+}
+
+function handleTimeout() {
+  disableOptions();
+  lives--;
+  combo = 0;
+  wrong++;
+  updateLives();
+  showFeedback('⏱ Tempo esgotado!', 'wrong');
+  if (lives <= 0) { setTimeout(endGame, 1200); return; }
+  setTimeout(nextQuestion, 1300);
+}
+
+function showFeedback(msg, type) {
+  const bar = document.getElementById('feedback-bar');
+  bar.textContent = msg;
+  bar.className = `show ${type}`;
+  setTimeout(() => { bar.className = ''; }, 1400);
+}
+
+function disableOptions() {
+  document.querySelectorAll('.opt-btn').forEach(b => b.disabled = true);
+}
+
+// ── GAME FLOW ─────────────────────────────────────────────────────────────
+function startGame() {
+  score = 0; lives = 3; correct = 0; wrong = 0; combo = 0; qIndex = 0;
+  questions = buildQuestions();
+  showScreen('screen-game');
+  updateLives();
+  renderQuestion();
+}
+
+function renderQuestion() {
+  if (qIndex >= questions.length) { endGame(); return; }
+  const q = questions[qIndex];
+
+  document.getElementById('q-num').textContent    = qIndex + 1;
+  document.getElementById('q-total').textContent  = TOTAL_Q;
+  document.getElementById('question-text').textContent = q.question;
+  document.getElementById('hint-text').textContent = q.hint ? `💡 ${q.hint}` : '';
+  document.getElementById('progress-fill').style.width = `${(qIndex/TOTAL_Q)*100}%`;
+
+  const tag = document.getElementById('cat-tag-display');
+  const cc  = catColors[q.category] || {};
+  tag.textContent = cc.label || q.category;
+  tag.style.background = cc.bg   || '#1e293b';
+  tag.style.color       = cc.text || '#94a3b8';
+
+  const grid = document.getElementById('options-grid');
+  grid.innerHTML = '';
+  q.options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    btn.textContent = formatNum(opt);
+    btn.onclick = () => handleAnswer(opt, q.answer);
+    grid.appendChild(btn);
+  });
+
+  startTimer();
+}
+
+function formatNum(n) {
+  if (Number.isInteger(n)) return String(n);
+  // trim trailing zeros up to 2 decimals
+  return parseFloat(n.toFixed(2)).toString();
+}
+
+function handleAnswer(chosen, correct_ans) {
+  clearInterval(timerInterval);
+  disableOptions();
+
+  const btns = document.querySelectorAll('.opt-btn');
+  btns.forEach(b => {
+    const v = parseFloat(b.textContent);
+    if (Math.abs(v - correct_ans) < 0.01) b.classList.add('correct');
+    else if (Math.abs(v - chosen) < 0.01)  b.classList.add('wrong');
+  });
+
+  const isCorrect = Math.abs(chosen - correct_ans) < 0.01;
+
+  if (isCorrect) {
+    correct++;
+    combo++;
+    const pts = selectedLvl === 'easy' ? 10 : selectedLvl === 'medium' ? 20 : 30;
+    const bonus = combo >= 3 ? Math.floor(pts * .5) : 0;
+    score += pts + bonus;
+    document.getElementById('score-val').textContent = score;
+
+    if (combo >= 3) {
+      const cb = document.getElementById('combo-badge');
+      cb.textContent = `🔥 COMBO x${combo}`;
+      cb.classList.add('show');
+      setTimeout(() => cb.classList.remove('show'), 1400);
+    }
+
+    const msgs = ['✅ Correto!','🎉 Muito bem!','⭐ Excelente!','💪 Isso aí!'];
+    showFeedback(msgs[rnd(0, msgs.length-1)] + (bonus ? ` +${bonus} bônus!` : ''), 'correct');
+  } else {
+    wrong++;
+    combo = 0;
+    lives--;
+    updateLives();
+    showFeedback(`❌ Era ${formatNum(correct_ans)}`, 'wrong');
+    if (lives <= 0) { setTimeout(endGame, 1300); return; }
+  }
+
+  qIndex++;
+  setTimeout(renderQuestion, 1400);
+}
+
+function endGame() {
+  clearInterval(timerInterval);
+  showScreen('screen-result');
+
+  const total = correct + wrong;
+  const acc   = total ? Math.round((correct/total)*100) : 0;
+
+  document.getElementById('result-score').textContent = `${score} pts`;
+  document.getElementById('stat-correct').textContent = correct;
+  document.getElementById('stat-wrong').textContent   = wrong;
+  document.getElementById('stat-acc').textContent     = `${acc}%`;
+
+  let emoji = '😢', title = 'Continue tentando!', stars = '';
+  if (acc >= 90) { emoji = '🏆'; title = 'Incrível! Você arrasou!'; stars = '⭐⭐⭐'; launchConfetti(); }
+  else if (acc >= 70) { emoji = '😄'; title = 'Muito bom! Quase perfeito!'; stars = '⭐⭐'; }
+  else if (acc >= 50) { emoji = '🙂'; title = 'Bom trabalho! Pratique mais!'; stars = '⭐'; }
+  else { stars = ''; }
+
+  document.getElementById('result-emoji').textContent = emoji;
+  document.getElementById('result-title').textContent  = title;
+  document.getElementById('result-stars').textContent  = stars;
+}
+
+function goHome() {
+  showScreen('screen-start');
+}
+
+// ── CONFETTI ──────────────────────────────────────────
+function launchConfetti() {
+  const colors = ['#7c3aed','#60a5fa','#34d399','#f59e0b','#f472b6','#fff'];
+  for (let i = 0; i < 60; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetti-piece';
+    el.style.left      = Math.random()*100 + 'vw';
+    el.style.width     = rnd(6,12) + 'px';
+    el.style.height    = rnd(8,16) + 'px';
+    el.style.background= colors[rnd(0,colors.length-1)];
+    el.style.animationDuration  = rnd(18,35)/10 + 's';
+    el.style.animationDelay     = rnd(0,15)/10 + 's';
+    document.body.appendChild(el);
+    el.addEventListener('animationend', () => el.remove());
+  }
+}
+
+// ── CATEGORY & LEVEL BUTTONS ──────────────────────────
+document.getElementById('cat-grid').addEventListener('click', e => {
+  const btn = e.target.closest('.cat-btn');
+  if (!btn) return;
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedCat = btn.dataset.cat;
+});
+
+document.getElementById('level-row').addEventListener('click', e => {
+  const btn = e.target.closest('.level-btn');
+  if (!btn) return;
+  document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedLvl = btn.dataset.lvl;
+});
+</script>
+</body>
+</html>
